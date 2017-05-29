@@ -1,6 +1,6 @@
 deployment:
   production:
-    branch: production
+    branch: master
     commands:
       - git push git@heroku.com:twitclone01.git $CIRCLE_SHA1:master
       - heroku run rake db:migrate --app twitclone01
