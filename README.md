@@ -37,5 +37,6 @@ As a user, I can set background/theme
 As a user, I can make my account private or public
 As a user, I can tag my tweets
 As a user, I can mentioned another user in my tweet
-
+As a user, I can share my tweet
+As a user, I can view a list of messages
 
