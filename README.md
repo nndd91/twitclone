@@ -40,3 +40,6 @@ As a user, I can mentioned another user in my tweet
 As a user, I can share my tweet
 As a user, I can view a list of messages
 
+# ERD
+
+[ERD]: https://github.com/nndd91/twitclone/blob/master/ERD.png?raw=true "Logo Title Text 2"
