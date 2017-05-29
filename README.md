@@ -41,5 +41,4 @@ As a user, I can share my tweet
 As a user, I can view a list of messages
 
 # ERD
-
-[ERD]: https://github.com/nndd91/twitclone/blob/master/ERD.png?raw=true "Logo Title Text 2"
+![ERD Diagram](https://github.com/nndd91/twitclone/blob/master/ERD.png?raw=true "Logo Title Text 1")
