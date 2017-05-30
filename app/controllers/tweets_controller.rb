@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
+
   def index
     @tweets = Tweet.all
   end
@@ -20,6 +22,14 @@ class TweetsController < ApplicationController
   def destroy
     @tweet.destroy
     redirect_to tweets_path
+  end
+
+  def edit
+    @tweet = Tweet.find(params[:id])
+  end
+
+  def show
+    @tweet = Tweet.find(params[:id])
   end
 
   private
