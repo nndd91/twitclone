@@ -1,0 +1,9 @@
+<h1>Tweets!!</h1>
+
+<% if @tweets.exists? %>
+  <% @tweets.each do |tweet| %>
+    <li><%= tweet.body %>
+  <% end %>
+<% end %>
+
+<%= link_to 'New Tweet', tweets_new_path %>
