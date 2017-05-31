@@ -17,18 +17,18 @@
               </div>
               <div class="ui divider"></div>
                 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                <div class="ui input fluid">
+                <div class="ui small  input">
                   <%= f.label :email%> <br />
                   <%= f.email_field :email, autofocus: true %>
                 </div>
                 <div class="ui divider hidden"></div>
 
-                <div class="ui input fluid">
+                <div class="ui small input">
                   <%= f.label :password %> <br />
                   <%= f.password_field :password, autocomplete: "off" %>
                 </div>
-                <div class="ui divider hidden"></div>
-                <div class="ui divider hidden"></div>
+                <br/>
+                <br/>
                 <% if devise_mapping.rememberable? -%>
                 <div class="field">
                   <%= f.check_box :remember_me %>
@@ -37,7 +37,7 @@
                 <% end -%>
 
                 <div class="actions">
-                  <%= f.submit "Log in" %>
+                  <%= f.submit "Log in", :class=>"ui primary submit labeled icon button" %>
                 </div>
                 <% end %>
 

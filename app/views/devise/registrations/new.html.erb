@@ -26,9 +26,15 @@
         </div>
 
         <div class="actions">
-          <%= f.submit "Sign up" %>
+          <%= f.submit "Sign up", :class=>"ui primary submit labeled icon button" %>
+          
+          
+          <%= link_to 'Login', new_user_session_path, :class=>"ui primary submit labeled icon button"%>
+
+
+
         </div>
         </form>
         <% end %>
 
-        <%= render "devise/shared/links" %>
+       
