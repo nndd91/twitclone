@@ -3,6 +3,8 @@
 <% if @tweets.exists? %>
   <% @tweets.each do |tweet| %>
     <li><%= tweet.body %>
+    <%= link_to 'Show', tweets_show_path(tweet) %>
+    <%= link_to 'Edit', tweets_edit_path(tweet) %>
   <% end %>
 <% end %>
 
