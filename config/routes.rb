@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'profile/:user_id/followers', to: 'profile#followers', as: 'follower'
   get 'profile/:user_id', to: 'profile#show', as: 'profile_show'
   get 'profile/:user_id/follow', to: 'profile#follow', as: 'follow'
+  get 'profile/:user_id/unfollow', to: 'profile#unfollow', as: 'unfollow'
   resources :tweets
 
 end

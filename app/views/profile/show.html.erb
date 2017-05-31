@@ -1,6 +1,9 @@
 <%= @user.email %>
+<% if @user.following?(current_user) %>
+<%= link_to 'Unfollow', unfollow_path %>
+<% else %>
 <%= link_to 'Follow', follow_path %>
-
+<% end %>
 <% following = "Following: #{@user.following.count}"%>
 <% followers = "Followers: #{@user.followers.count}"%>
 <br><%= link_to following.html_safe, following_path(@user)%>
