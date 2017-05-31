@@ -3,12 +3,12 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'tweets#index'
-  get 'tweets' , to: 'tweets#index'
-  get 'tweets/new', to: 'tweets#new'
-  post 'tweets', to: 'tweets#create'
-  get 'tweets/edit/:id', to: 'tweets#edit', as: 'tweets_edit'
-  get 'tweets/:id', to: 'tweets#show', as: 'tweets_show'  
+  get 'profile/', to: 'profile#index'  
 
-  #resources :tweets
+  get 'profile/:user_id/following', to: 'profile#following', as: 'following'
+  get 'profile/:user_id/followers', to: 'profile#followers', as: 'follower'
+  get 'profile/:user_id', to: 'profile#show', as: 'profile_show'
+  get 'profile/:user_id/follow', to: 'profile#follow', as: 'follow'
+  resources :tweets
 
 end

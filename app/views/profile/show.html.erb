@@ -1,0 +1,11 @@
+<%= @user.email %>
+<%= link_to 'Follow', follow_path %>
+
+<% following = "Following: #{@user.following.count}"%>
+<% followers = "Followers: #{@user.followers.count}"%>
+<br><%= link_to following.html_safe, following_path(@user)%>
+<br><%= link_to followers.html_safe, follower_path(@user)%>
+<br>
+<% @tweets.each do |tweet| %>
+  <li><%= tweet.body %>
+<% end %>
