@@ -25,4 +25,12 @@ class ProfileController < ApplicationController
     redirect_to profile_show_path(@user.id)
   end
 
+  def home
+    @following = current_user.following
+    @tweets = []
+    @following.each do |following_id|
+      @tweets += Tweets.where(user_id: following_id)
+    end
+  end
+
 end
