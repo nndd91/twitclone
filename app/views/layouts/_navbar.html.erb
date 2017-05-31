@@ -1,0 +1,20 @@
+  <div class="ui orange inverted pointing menu">
+  	<a class="item">
+  		<%= link_to 'Home', tweets_path, :class=> 'navbar-link active item' %>
+  	</a>
+  	<a class="item">
+  		Messages
+  	</a>
+  	<a class="item">
+  		Friends
+  	</a>
+  	<div class="right menu">		
+  		<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link item'   %>
+  		<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link item' %>
+  	</div>
+  </div>
+</div>
+
+
+
+<hr/>

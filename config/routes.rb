@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post 'tweets', to: 'tweets#create'
   get 'tweets/edit/:id', to: 'tweets#edit', as: 'tweets_edit'
   get 'tweets/:id', to: 'tweets#show', as: 'tweets_show'
+
 end
