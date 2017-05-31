@@ -1,0 +1,7 @@
+<h1><%= @user.email%></h1>
+  <%= @relationship.count %>
+<% @relationship.each do |user| %>
+  <li><%= user.email %>
+<% end %>
+
+<%= link_to 'Back to Index', profile_path + "/" + @user.id.to_s %>

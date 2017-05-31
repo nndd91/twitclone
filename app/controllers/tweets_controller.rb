@@ -28,6 +28,12 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
   end
 
+  def update
+    @tweet = Tweet.find(params[:id])
+    @tweet.update(tweet_params)
+    redirect_to tweet_path
+  end
+
   def show
     @tweet = Tweet.find(params[:id])
   end
