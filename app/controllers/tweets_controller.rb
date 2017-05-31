@@ -38,6 +38,12 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
   end
 
+  def feed
+    @user = current_user
+    @following = current_user.following_ids
+    @tweets = Tweet.get_tweets(@following, current_user.id)
+  end
+
   private
   def tweet_params
     params.require(:tweet).permit(:body, :user_id)

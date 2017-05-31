@@ -17,6 +17,4 @@ class User < ApplicationRecord
   has_many :following, through: :active_followings, source: :followed
   has_many :followers, through: :passive_followings, source: :follower
 
-
-
 end

@@ -6,6 +6,4 @@ class Tweet < ApplicationRecord
     Tweet.where("user_id IN (?) OR user_id = ?", following_ids, current_user_id)
   end
 
-
-
 end

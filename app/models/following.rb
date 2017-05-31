@@ -6,11 +6,4 @@ class Following < ApplicationRecord
     Following.exists?(follower_id: user, followed_id: following_id)
   end
 
-  def self.follow_user(follower_id, following_id)
-    
-  end
-
-  def self.unfollow_user(follower_id, following_id)
-  end
-
 end
