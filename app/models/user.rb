@@ -17,16 +17,6 @@ class User < ApplicationRecord
   has_many :following, through: :active_followings, source: :followed
   has_many :followers, through: :passive_followings, source: :follower
 
-  def following?(user)
-    Following.exists?(follower_id: user, followed_id: id)
-  end
 
-  def follow_user(follower_id)
-    Following.create(follower_id: follower_id, followed_id: id)
-  end
-
-  def unfollow_user(follower_id)
-    Following.find_by(follower_id: follower_id, followed_id: id).destroy
-  end
 
 end
