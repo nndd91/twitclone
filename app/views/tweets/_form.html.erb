@@ -1,19 +1,19 @@
 
 <div class="ui container">
-	<form class="ui reply form">
 		<%= form_for @tweet do |f| %>
-		<div class="field">
-			<%= f.label :"Message" %>
-			<%= f.text_area :body%>
-		</div>
-		<%= f.hidden_field :user_id, value: current_user.id %>
-		<div class="ui primary submit labeled icon button">  
-		<%= f.submit "" , class: "ui primary submit labeled icon button"%> Add Tweet <i class="icon edit"></i>
-		</div>
+			<div class="field">
+				<%= f.label :body %>
+				<%= f.text_area :body %>
+			</div>
+
+			<%= f.hidden_field :user_id, value: current_user.id %>
+
+			<div class="ui primary submit labeled icon button">
+				<%# f.submit "" , class: "ui primary submit labeled icon button"%>
+				<%= f.submit %>
+			</div>
 
 
 		<% end %>
 
-
-	</form>
 </div>
