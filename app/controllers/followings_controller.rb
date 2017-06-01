@@ -1,9 +1,12 @@
 class FollowingsController < ApplicationController
 
   def create
-    Following.create(follower_id: params[:follower_id], 
-                     followed_id: params[:profile_id])
-    redirect_to profile_path(params[:profile_id])
+    @following = Following.new(follower_id: params[:follower_id],
+                               followed_id: params[:profile_id])
+    if @following.save
+      redirect_to profile_path(params[:profile_id])
+    else
+    end
   end
 
   def destroy
