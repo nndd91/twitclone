@@ -6,27 +6,33 @@
 
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
+	<link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css"
+	rel="stylesheet" type="text/css"/>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+	<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js">
+	</script>
+		<style> 
+			.signin{
+				background: white;
+				width: 100%;
+				min-height: 100%;
+				overflow: hidden;
+				padding-top:10%;} 
+			</style>
+		</head>
 
-<body>
-	<% if notice %>
-	<p class="alert alert-success"><%= notice %></p>
-	<% end %>
-	<% if alert %>
-	<p class="alert alert-danger"><%= alert %></p>
-	<% end %>
-	
-	<p class="navbar-text pull-right">
-		<% if user_signed_in? %>
-		Logged in as <strong><%= current_user.email %></strong>.
-		<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-		<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-		<% else %>
-		<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-		<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-		<% end %>
-	</p>
+		<body>
+			<% if notice %>
+			<p class="alert alert-success"><%= notice %></p>
+			<% end %>
+			<% if alert %>
+			<p class="alert alert-danger"><%= alert %></p>
+			<% end %>
 
-	<%= yield %>
-</body>
-</html>
+			<p class="navbar-text pull-right">
+			</p>
+
+			<%= yield %>
+		</body>
+		</html>
