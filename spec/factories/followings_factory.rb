@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :following do
-    follower_id 1
-    followed_id 2
+    association :followed, factory: :user
+    association :follower, factory: :user
 
     trait :invalid do
       followed nil
