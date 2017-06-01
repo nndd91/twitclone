@@ -1,26 +1,44 @@
-<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<body class="signin">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+  <div class="ui container">
+    <div class="ui equal width center aligned padded grid stackable">
+      <div class="row">
+        <div class="six wide column">
+          <div class="ui orange segments">
+            <div class="ui segment orange inverted">
+              <h3 class="ui header">
+                Sign in with your Twitter Account
+              </h3>
+            </div>
+            <div class="ui segment">
+              <div class="description">
+                Enter your email address and password.
+              </div>
+              <div class="ui divider"></div>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="ui small  input">
+                <%= f.label :email%> <br />
+                <%= f.email_field :email, autofocus: true %>
+              </div>
+              <div class="ui divider hidden"></div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
+              <div class="ui small input">
+                <%= f.label :password %> <br />
+                <%= f.password_field :password, autocomplete: "off" %>
+              </div>
+              <br/>
+              <br/>
+              <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+              <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+              <div class="actions">
+              <%= f.submit "Log in", class:"ui primary submit labeled icon button" %>
+              </div>
+              <% end %>
 
-<%= render "devise/shared/links" %>
+              <%= render "devise/shared/links" %>
