@@ -1,23 +1,45 @@
-<h1><%= @user.email %></h1>
+<%= render 'layouts/navbar'%>
+<%= render 'layouts/stats'%>
 
-<% if @following %>
-  <%= link_to 'Unfollow', 
-      following_path(:following_id => @following.id), 
-                      :method => :delete %>
-<% else %>
-  <%= link_to 'Follow', 
-      profile_followings_path(:profile_id=> @user.id,
-                              :follower_id => current_user.id),
-                              :method => :post %>
-<% end %>
 
-<% following = "Following: #{@user.following.count}"%>
-<% followers = "Followers: #{@user.followers.count}"%>
+  <div class="ui segment">
+    <h1><%= @user.email %></h1>
 
-<br><%= link_to following.html_safe, get_following_profile_path(@user)%>
-<br><%= link_to followers.html_safe, get_followers_profile_path(@user)%>
-<br>
+    <% if @following %>
+      <%= link_to 'Unfollow',
+          following_path(:following_id => @following.id),
+                          :method => :delete %>
+    <% else %>
+      <%= link_to 'Follow',
+          profile_followings_path(:profile_id=> @user.id,
+                                  :follower_id => current_user.id),
+                                  :method => :post %>
+    <% end %>
 
-<% @tweets.each do |tweet| %>
-  <li><%= tweet.body %>
-<% end %>
+    <% following = "Following: #{@user.following.count}"%>
+    <% followers = "Followers: #{@user.followers.count}"%>
+
+    <br><%= link_to following.html_safe, get_following_profile_path(@user)%>
+    <br><%= link_to followers.html_safe, get_followers_profile_path(@user)%>
+    <br>
+  </div>
+
+  <div class="ui segments">
+    <div class="ui selection list">
+      <% @tweets.each do |tweet| %>
+        <div class="item">
+          <img class="ui avatar image" src="Avatar">
+          <div class="content">
+            <div class="header">
+              <!-- Later replace with the name!!! -->
+              <%= tweet.user.email %>
+              <%# tweet.user.username %>
+            </div>
+            <div class="description">
+              <%= tweet.body %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
