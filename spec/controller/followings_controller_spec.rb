@@ -17,12 +17,6 @@ RSpec.describe FollowingsController, type: :controller do
       it { expect(Following.count).to eq(1) }
       it { expect(response).to redirect_to profile_path(user2) }
     end
-
-    context 'when user#follows fails' do
-      let(:params) { nil }
-      it { expect(Following.count).to eq(0)}
-      it { expect(response).to redirect_to profile_path(user2) }
-    end
   end
 
   describe 'DELETE #destroy' do

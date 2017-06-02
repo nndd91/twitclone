@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
+  before_action :authenticate_user!
 
   def index
     @tweets = Tweet.all
@@ -11,17 +11,16 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
-      byebug
       redirect_to tweets_path
     else
-      byebug
       render :new
     end
   end
 
   def destroy
+    @tweet = Tweet.find(params[:id])
     @tweet.destroy
     redirect_to tweets_path
   end
