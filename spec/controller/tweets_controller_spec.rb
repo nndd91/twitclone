@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TweetsController, type: :controller do
 
-  describe 'user not signed in' do
+  context 'user not signed in' do
     before do
       get :index
     end
@@ -10,7 +10,7 @@ RSpec.describe TweetsController, type: :controller do
     it { expect(response).to redirect_to new_user_session_path }
   end
 
-  describe 'user signed in' do
+  context 'user signed in' do
     let(:user) { create(:user) }
 
     before do
