@@ -1,6 +1,10 @@
 <%= render 'layouts/navbar'%>
 <%= render 'layouts/stats'%>
-
-<h1>Tweets!!</h1>
-
-<%= render 'list' %>
+  <div class="ui sixteen wide centered grid">
+    <div class="ui twelve wide column">
+    <%= link_to 'New Tweet', new_tweet_path %>
+      <div class="ui segments">
+        <%= render 'list' %>
+      </div>
+    </div>
+  </div>

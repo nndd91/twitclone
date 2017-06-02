@@ -1,24 +1,26 @@
-<div class="ui comments">
-  <div class="comment">
-    <div class="content">
-      <a class="author">Joe Henderson</a>
-      <div class="metadata">
-        <div class="date">1 day ago</div>
+<% if @tweets.exists? %>
+  <% @tweets.each do |tweet| %>
+  <div class="ui segment">
+    <div class="ui sixteen wide grid">
+      <div class="two wide column">
+        <img class="ui medium circular image" src="https://forumac.nathanshq.com/uploads/user/12/thumb_nequesapientedeleniti.png"></img>
       </div>
-      <% if @tweets.exists? %>
-      <% @tweets.each do |tweet| %>
-      <div class="text">
-        <%= tweet.body %>
-        by: <%= link_to tweet.user.email, profile_path(tweet.user)%>
-      </div>
-
-      <%= link_to 'Show', tweet_path(tweet) %>
-      <%= link_to 'Edit', edit_tweet_path(tweet) %>
-      <% end %>
-      <% end %>
-      <div class="actions">
-        <a class="reply">Reply</a>
+      <div class="fourteen wide column">
+        <div class="row">
+          <%= link_to tweet.user.email, profile_path(tweet.user)%>
+        </div>
+        <div class="row">
+          <%= tweet.body %>
+        </div>
+        <%= link_to 'Show', tweet_path(tweet) %>
+        <%= link_to 'Edit', edit_tweet_path(tweet) %>
       </div>
     </div>
   </div>
-  <%= link_to 'New Tweet', new_tweet_path %>
+  <% end %>
+<% end %>
+<div class="actions">
+  <a class="reply">Reply</a>
+</div>
+
+
