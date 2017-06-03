@@ -1,0 +1,19 @@
+<div class="ui segments">
+  <div class="ui selection list">
+    <% @tweets.each do |tweet| %>
+      <div class="item">
+        <img class="ui avatar image" src="https://forumac.nathanshq.com/uploads/user/12/thumb_nequesapientedeleniti.png"></img>
+        <div class="content">
+          <div class="header">
+            <!-- Later replace with the name!!! -->
+            <%= tweet.user.email %>
+            <%# tweet.user.username %>
+          </div>
+          <div class="description">
+            <%= tweet.body %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
