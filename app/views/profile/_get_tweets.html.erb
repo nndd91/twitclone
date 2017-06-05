@@ -2,7 +2,7 @@
   <div class="ui selection list">
     <% @tweets.each do |tweet| %>
       <div class="item">
-        <img class="ui avatar image" src="https://forumac.nathanshq.com/uploads/user/12/thumb_nequesapientedeleniti.png"></img>
+       <%= image_tag(tweet.user.avatar.thumb.url, :class => 'ui medium circular image' )%>
         <div class="content">
           <div class="header">
             <!-- Later replace with the name!!! -->

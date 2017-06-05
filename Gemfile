@@ -64,4 +64,5 @@ gem 'devise'
 gem 'faker'
 gem 'simple_form'
 gem 'jquery-rails'
-
+gem 'carrierwave'
+gem 'mini_magick'

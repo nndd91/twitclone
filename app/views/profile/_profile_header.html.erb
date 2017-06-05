@@ -2,7 +2,7 @@
       <div class="ui sixteen wide grid">
         <div class="ui four wide column">
           <center>
-            <img class="ui small circular image" src="https://forumac.nathanshq.com/uploads/user/12/thumb_nequesapientedeleniti.png"></img>
+            <%= image_tag(@user.avatar.thumb.url, :class => 'ui medium circular image' )%>
           </center>
         </div>
         <div class="ui twelve wide column">
