@@ -1,9 +1,9 @@
 class AddMoreFieldsToUser < ActiveRecord::Migration[5.1]
   def change
-    add_column :user, :first_name, :string
-    add_column :user, :last_name, :string
-    add_column :user, :username, :string
-    add_column :user, :avatar, :string
-    add_column :user, :age, :integer
+    add_column :users, :first_name, :string
+    add_column :users, :last_name, :string
+    add_column :users, :username, :string
+    add_column :users, :avatar, :string
+    add_column :users, :age, :integer
   end
 end
