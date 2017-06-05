@@ -43,7 +43,9 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'
   gem 'guard-rspec', require: false
-
+  
+  # Ruby gem to load environment variables
+  gem 'dotenv-rails'
 
 end
 
