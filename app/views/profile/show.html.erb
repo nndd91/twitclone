@@ -1,23 +1,11 @@
-<h1><%= @user.email %></h1>
+<%= render 'layouts/navbar'%>
+  <div class="ui container">
 
-<% if @following %>
-  <%= link_to 'Unfollow', 
-      following_path(:following_id => @following.id), 
-                      :method => :delete %>
-<% else %>
-  <%= link_to 'Follow', 
-      profile_followings_path(:profile_id=> @user.id,
-                              :follower_id => current_user.id),
-                              :method => :post %>
-<% end %>
-
-<% following = "Following: #{@user.following.count}"%>
-<% followers = "Followers: #{@user.followers.count}"%>
-
-<br><%= link_to following.html_safe, get_following_profile_path(@user)%>
-<br><%= link_to followers.html_safe, get_followers_profile_path(@user)%>
-<br>
-
-<% @tweets.each do |tweet| %>
-  <li><%= tweet.body %>
-<% end %>
+    <div class="ui sixteen wide centered grid">
+      <div class="ui twelve wide column">
+      <%= render 'profile_header' %>
+        <%= render 'tweets/list' %>
+        <%# render 'get_tweets' %>
+      </div>
+    </div>
+  </div>

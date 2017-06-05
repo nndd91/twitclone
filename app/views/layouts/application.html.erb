@@ -12,27 +12,20 @@
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
 	<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js">
 	</script>
-		<style> 
+		<style>
 			.signin{
 				background: white;
 				width: 100%;
 				min-height: 100%;
 				overflow: hidden;
-				padding-top:10%;} 
+				padding-top:10%;}
 			</style>
 		</head>
 
 		<body>
-			<% if notice %>
-			<p class="alert alert-success"><%= notice %></p>
-			<% end %>
-			<% if alert %>
-			<p class="alert alert-danger"><%= alert %></p>
-			<% end %>
-
 			<p class="navbar-text pull-right">
 			</p>
-
 			<%= yield %>
+
 		</body>
 		</html>

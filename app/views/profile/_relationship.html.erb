@@ -1,8 +1,18 @@
+<div class="ui segments">
+  Relationship Count: <%= @relationship.count %>
+  <div class="ui selection list">
+    <% @relationship.each do |user| %>
+      <div class="item">
+        <img class="ui mini avatar image" src="https://forumac.nathanshq.com/uploads/user/12/thumb_nequesapientedeleniti.png"></img>
+        <div class="content">
+          <div class="header">
+            <li><%= link_to user.email, profile_path(user.id) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </li>
 
-<h1><%= @user.email%></h1>
-  <%= @relationship.count %>
-<% @relationship.each do |user| %>
-  <li><%= link_to user.email, profile_path(user.id) %>
-<% end %>
-
-<%= link_to 'Back to Index', profile_path + "/" + @user.id.to_s %>ow
+    <%= link_to 'Back to Index', profile_path + "/" + @user.id.to_s %>ow
+  </li>
+</div>
