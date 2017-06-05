@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :message
+
   resources :profile, only: [:show] do
     member do
       get :get_following
