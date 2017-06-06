@@ -24,7 +24,7 @@ RailsAdmin.config do |config|
   # config.show_gravatar = true
 
   config.authorize_with do |controller|
-    unless current_user.try(:admin?)
+    unless current_user.try(:is_admin?)
       flash[:error] = "You are not admin"
       redirect_to main_app.root_path
     end
