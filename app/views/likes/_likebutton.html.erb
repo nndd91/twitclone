@@ -1,5 +1,5 @@
 <% if @like =  tweet.likes.find_by(user_id: current_user.id) %>
-  <%= link_to 'Unlike', like_path(@like), method: :delete, remote: true %>
+  <%= link_to '<i class="thumbs up icon"></i>'.html_safe, like_path(@like), method: :delete, remote: true %>
 <% else %>
-  <%= link_to 'Like', tweet_likes_path(tweet), method: :post, remote: true %>
+  <%= link_to '<i class="thumbs outline up icon"></i>'.html_safe, tweet_likes_path(tweet), method: :post, remote: true %>
 <% end %>
