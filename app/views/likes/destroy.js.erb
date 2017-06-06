@@ -1,0 +1,6 @@
+// Refresh Likes Counter
+var tweetid = <%= @tweetid %>;
+var likescount = <%= Tweet.find(@tweetid).likes.count %>;
+$('#likescount-' + tweetid).html('('+likescount+')');
+
+$('#likes_link-' + tweetid).html("<%= j render partial: 'likes/likebutton', locals: { tweet: @tweet } %>");
