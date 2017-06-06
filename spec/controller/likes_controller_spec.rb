@@ -20,8 +20,8 @@ RSpec.describe LikesController, type: :controller do
     end
 
     describe 'POST #create' do
-      let(:tweet) { create(:tweet, user: user) }
-      let!(:like) { create(:like, tweet: tweet, user: user) }
+      let!(:tweet) { create(:tweet, user: user) }
+      # let!(:like) { create(:like, tweet: tweet, user: user) }
 
       before do
         post :create, params: { tweet_id: tweet.id, user_id: user}
@@ -30,7 +30,6 @@ RSpec.describe LikesController, type: :controller do
       it { expect(User.count).to eq(1) }
       it { expect(Tweet.count).to eq(1) }
       it { expect(Like.count).to eq(1) }
-      it { expect(response).to redirect_to tweet_path(tweet)}
     end
 
     describe 'DELETE #destroy' do
@@ -46,7 +45,6 @@ RSpec.describe LikesController, type: :controller do
       it { expect(User.count).to eq(1) }
       it { expect(Tweet.count).to eq(2) }
       it { expect(Like.count).to eq(1) }
-      it { expect(response).to redirect_to tweet_path(tweet) }
 
     end
   end
