@@ -1,0 +1,16 @@
+<div class="ui container">
+		<%= form_for @message do |f| %>
+			<div class="field">
+				<%= f.label :body %>
+				<%= f.text_area :body %>
+			</div>
+
+			<div class="ui primary submit labeled icon button">
+				<%# f.submit "" , class: "ui primary submit labeled icon button"%>
+				<%= f.submit %>
+			</div>
+
+
+		<% end %>
+
+</div>

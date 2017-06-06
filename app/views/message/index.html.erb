@@ -1,0 +1,12 @@
+<%= render 'layouts/navbar'%>
+<div class="ui container segments">
+
+<%= render 'layouts/stats'%>
+  <div class="ui sixteen wide centered grid">
+
+    <div class="ui twelve wide column">
+      <%= link_to 'New Tweet', new_tweet_path %>
+      <%= render 'list' %>
+    </div>
+  </div>
+</div>
