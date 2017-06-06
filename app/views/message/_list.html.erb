@@ -3,6 +3,7 @@
 
 <%= message.body %>
 <%= message.to_user_id %>
+<%= User.find(message.to_user_id).email %>
 <%= link_to 'Show' %>
 <%= link_to 'Delete' %>
 
