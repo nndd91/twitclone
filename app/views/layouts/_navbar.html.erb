@@ -2,9 +2,14 @@
   	<a class="item">
   		<%= link_to 'Home', tweets_path, :class=> 'navbar-link item' %>
   	</a>
+    <a class="item">
+      <%= link_to 'Message', profile_message_index_path(current_user), :class=> 'navbar-link item' %>
+    </a>
+
   	<a class="item">
   		<%= link_to 'Following', get_following_profile_path(current_user), :class=> 'navbar-link item' %>
   	</a>
+
     <a class="item">
       <%= link_to 'Followers', get_followers_profile_path(current_user), :class=> 'navbar-link item' %>
     </a>

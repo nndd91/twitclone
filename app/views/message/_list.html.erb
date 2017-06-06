@@ -1,18 +1,15 @@
-<% if @tweets.exists? %>
-<div class="ui segments">
-  <% @message.each do |message| %>
-  <div class="ui segment">
-   <div class="row">
-    <%= message.body %>
-  </div>
-  <% if tweet.user_id == current_user.id %>
-  <%= link_to 'Show', tweet_path(tweet) %>
-  <%= link_to 'Edit', edit_tweet_path(tweet) %>
-  <% end %>
-  <div class="actions">
-    <a class="reply">Reply</a>
-  </div>
-</div>
+
+<% @message.each do |message| %>
+
+<%= message.body %>
+<%= message.to_user_id %>
+<%= link_to 'Show' %>
+<%= link_to 'Delete' %>
+
+
+<br/>
+
+
 <% end %>
 
 

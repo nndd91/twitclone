@@ -11,14 +11,16 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :message
+  
 
-  resources :profile, only: [:show] do
+  resources :profile, only: [:show, :create] do
     member do
       get :get_following
       get :get_followers
     end
     resources :followings, only: [:create, :destroy], shallow: true
+    resources :message 
+    post 'message/new' => 'message#create', :as=>"new_profile_message"
     # shallow: true to reduce url length, also profile_id is redundant in delete.
   end
 

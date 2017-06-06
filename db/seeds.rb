@@ -32,8 +32,8 @@ end
 # Create some messages
 100.times do
   msg_body = Faker::HarryPotter.quote
-  from_user_id = User.offset(offset).limit(1).first.id
   offset = rand(User.count)
+  from_user_id = User.offset(offset).limit(1).first.id
   to_user_id=User.offset(offset).limit(1).first
 
   Message.create(from_user_id: from_user_id,

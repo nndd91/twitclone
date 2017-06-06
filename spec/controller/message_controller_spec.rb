@@ -9,25 +9,34 @@ RSpec.describe MessageController, type: :controller do
 
     before do
       sign_in user
-      post :create, params: { from_user_id: user, body: params, to_user_id: user2}
+      post :create, params: {profile_id:1, from_user_id: user, body: params, to_user_id: user2}
     end
 
     context 'when user#message passes' do
       let(:params) { user }
       it { expect(Message.count).to eq(1) }
-      it { expect(response).to redirect_to message_path(params[user]) }
+      it { expect(response).to redirect_to profile_message_path(params[:id]) }
     end
   end
-  describe 'GET #index' do
 
-  let(:userid) { create_list(:from_user_id, :body, :to_user_id) }
+  describe 'GET #new' do
+    before do
+      get :new, params: {profile_id:1}
+    end
 
-  before do
-    sign_in user
-    get :index
+    it { expect(assigns(:message)).to be_a_new_record }
   end
 
-  it { expect(assigns(:message)).to eq(msgid) }
+  describe 'GET #index' do
+    
+    let(:userid) { create_list(:from_user_id, :body, :to_user_id) }
+
+    before do
+      sign_in user
+      get :index
+    end
+
+    it { expect(assigns(:message)).to eq(msgid) }
   
   end
   
@@ -40,6 +49,7 @@ RSpec.describe MessageController, type: :controller do
       get :show, params: { id: msgid }
     end
     it { expect(assigns(:message)).to eq(msgid) }
+
   end
 
   describe 'DELETE #destroy' do
@@ -51,7 +61,7 @@ RSpec.describe MessageController, type: :controller do
 
       context 'when message#destroy successfully' do
         it { expect(Message.count).to eq(0) }
-        it { expect(response).to redirect_to message_path }
+        it { expect(response).to redirect_to profile_message_path }
       end
   end
 

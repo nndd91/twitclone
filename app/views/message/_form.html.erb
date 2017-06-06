@@ -1,16 +1,10 @@
-<div class="ui container">
-		<%= form_for @message do |f| %>
-			<div class="field">
-				<%= f.label :body %>
-				<%= f.text_area :body %>
-			</div>
+<%= form_for @message, url: profile_new_profile_message_path(@profile_id) do |f| %>
+To: <%= f.collection_select :to_user_id, User.all, :id , :email %>
+<br/>
 
-			<div class="ui primary submit labeled icon button">
-				<%# f.submit "" , class: "ui primary submit labeled icon button"%>
-				<%= f.submit %>
-			</div>
+Message: <%= f.text_area :body %>
 
-
-		<% end %>
-
+<div class="ui primary submit icon button">
+	<%= f.submit %>
 </div>
+<% end %>
