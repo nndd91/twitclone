@@ -21,19 +21,18 @@ class MessageController < ApplicationController
 
   def show
    @message = Message.find(params[:id])
- end
+  end
 
- def index
-  @message = Message.where(from_user_id:params[:profile_id])
-   
-  #@user= User.find(params[:to_user_id])
+  def index
+    @message = Message.where(from_user_id:params[:profile_id])
+    #@user= User.find(params[:to_user_id])
  
- end
+   end
 
- def destroy
+  def destroy
    Message.find(params[:id]).destroy
    redirect_to profile_message_path(params[:profile_id])
- end
+  end
 
   private
   def message_params
