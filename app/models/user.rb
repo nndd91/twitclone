@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_followings, source: :followed
   has_many :followers, through: :passive_followings, source: :follower
 
+  has_many :likes, dependent: :destroy
 
   # User Avatar Validation
   validates_integrity_of  :avatar
