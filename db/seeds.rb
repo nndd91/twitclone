@@ -9,6 +9,10 @@
 # Create first admin user
 email = "demo@demo.com"
 password = "password"
+first_name = "Demo"
+last_name = Faker::Name.last_name
+username = "Demo"
+age = Faker::Number.between(15, 30)
 is_admin = true
 
 User.create(email: email, password: password, password_confirmation: password, is_admin: is_admin)
