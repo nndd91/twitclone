@@ -20,6 +20,17 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_followings, source: :followed
   has_many :followers, through: :passive_followings, source: :follower
 
+  has_many :active_messages, class_name: "Message", 
+                              foreign_key: "from_user_id",
+                              dependent: :destroy
+
+  has_many :passive_messages, class_name: "Message",
+                              foreign_key: "to_user_id",
+                              dependent: :destroy
+
+  has_many :from_user, through: :active_messages, source: :from_user_id
+  has_many :to_user, through: :passive_messages, source: :to_user_id
+
 
   # User Avatar Validation
   validates_integrity_of  :avatar
