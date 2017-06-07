@@ -9,15 +9,8 @@
 				<%= f.file_field :media_location %>
 				<%= f.hidden_field :media_location_cache %>
 			</div>
-			<div class="field">
-				<% if @tweet.images.present? %>
-					<% @tweet.images.each do |image| %>
-						<%= image_tag(image.media_location.thumb.url) %>
-						<%= f.label :remove_media_location, 'Remove' %>
-            <%= f.input :remove_media_location, as: :boolean, label: false%>
-            <%= button_to "Remove", image_path(image), method: :delete, remote: true %>
-					<% end %>
-				<% end %>
+			<div class="field" id="imageupload">
+				<%= render partial: 'images/image_upload', locals: { tweet: @tweet } %>
 			</div>
 
 			<div class="actions">

@@ -15,7 +15,7 @@ class TweetsController < ApplicationController
     if @tweet.save
       @image = @tweet.images.build(media_location: tweet_params[:media_location])
       @image.save
-      redirect_to tweet_path(@tweet)
+      redirect_to edit_tweet_path(@tweet)
     else
       render :new
     end
@@ -34,7 +34,9 @@ class TweetsController < ApplicationController
   def update
     @tweet = Tweet.find(params[:id])
     @tweet.update(tweet_params)
-    redirect_to tweets_path
+    @image = @tweet.images.build(media_location: tweet_params[:media_location])
+    @image.save
+    redirect_to edit_tweet_path(@tweet)
   end
 
   def show
