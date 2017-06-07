@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170607050042) do
 
   create_table "images", force: :cascade do |t|
     t.integer "tweet_id"
-    t.string "media_locatin"
+    t.string "media_location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

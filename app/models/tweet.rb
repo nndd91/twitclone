@@ -1,4 +1,7 @@
 class Tweet < ApplicationRecord
+
+  attr_accessor :media_location, :media_location_cache, :remove_media_location
+
   belongs_to :user
   validates :body, length: { maximum: 140 }, presence: true
   has_many :likes, dependent: :destroy

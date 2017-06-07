@@ -1,16 +1,30 @@
 <div class="ui container">
-		<%= form_for @tweet do |f| %>
+	New Tweet
+	<div class="ui form segment">
+		<%= simple_form_for @tweet do |f| %>
 			<div class="field">
-				<%= f.label :body %>
-				<%= f.text_area :body %>
+				<%= f.input :body, as: :text %>
+			</div>
+			<div class="field">
+				<%= f.file_field :media_location %>
+				<%= f.hidden_field :media_location_cache %>
+			</div>
+			<div class="field">
+				<% if @tweet.images.present? %>
+					<% @tweet.images.each do |image| %>
+						<%= image_tag(image.media_location.thumb.url) %>
+						<%= f.label :remove_media_location, 'Remove' %>
+            <%= f.input :remove_media_location, as: :boolean, label: false%>
+					<% end %>
+				<% end %>
 			</div>
 
-			<div class="ui primary submit labeled icon button">
-				<%# f.submit "" , class: "ui primary submit labeled icon button"%>
-				<%= f.submit %>
+			<div class="actions">
+				<%= f.button :submit, class: "ui primary submit button"%>
 			</div>
 
 
 		<% end %>
+	</div>
 
 </div>
