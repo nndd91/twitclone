@@ -1,16 +1,18 @@
-
+<table class="ui single line table">
+ <tr>
+   <th>From:</th>
+   <th>Message</th>
+   <th></th>
+   <th></th>
+ </tr>
 <% messages.each do |message| %>
-
-  <%= message.body %>
-  <%= message.to_user_id %>
-  <%= User.find(message.to_user_id).email %>
-  <%= link_to 'Show' %>
-  <%= link_to 'Delete' %>
-
-
-  <br/>
-
+<tr>
+<td><%= User.find(message.to_user_id).email %></td>
+<td><%= message.body %></td>
+<td><%= link_to 'Show' %></td>
+<td><%= link_to 'Delete', message_path(message.id), method: :delete, data: { confirm: "Are you sure you want to do this message?" } %></td>
+  </tr>
 
 <% end %>
-
+</table>
 

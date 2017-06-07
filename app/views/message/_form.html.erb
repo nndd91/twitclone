@@ -1,11 +1,11 @@
 <%= form_for @message, url: create_message_path  do |f| %>
-	To: <%= f.collection_select :to_user_id, User.all, :id , :email %>
-	<%= f.hidden_field :from_user_id, value: current_user.id %>
-	<br/>
+  To: <%= f.collection_select :to_user_id, User.all, :id , :email %>
+  <%= f.hidden_field :from_user_id, value: current_user.id %>
+  <br/>
 
-	Message: <%= f.text_area :body %>
+  Message: <%= f.text_area :body %>
 
-	<div class="ui primary submit icon button">
-		<%= f.submit %>
-	</div>
+  <div class="ui primary submit icon button">
+  	<%= f.submit %>
+  </div>
 <% end %>
