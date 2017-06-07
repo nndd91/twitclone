@@ -39,8 +39,21 @@ end
   Tweet.create(body: tweet_body, user_id: user_id)
 end
 
+# Create some messages
+100.times do
+  msg_body = Faker::HarryPotter.quote
+  offset = rand(User.count)
+  from_user_id = User.offset(offset).limit(1).first.id
+  to_user_id=User.offset(offset).limit(1).first
+
+  Message.create(from_user_id: from_user_id,
+      to_user_id: to_user_id, body: msg_body)
+end
+
+
 # Link Users together
-300.times do
+
+200.times do
   offset = rand(User.count)
   follower = User.offset(offset).limit(1).first
   offset = rand(User.count)

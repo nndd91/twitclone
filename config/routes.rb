@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :message
+  post 'message/new' => 'message#create', :as=>"create_message"
 
   resources :profile, only: [:show] do
     member do

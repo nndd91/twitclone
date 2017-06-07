@@ -1,0 +1,22 @@
+  <%= render 'layouts/navbar'%>
+  
+
+  <div class="ui container segments">
+    <div class="ui sixteen wide centered grid">
+
+      <div class="ui twelve wide column">
+        <div id="newmessagebox"> 
+          <%= link_to 'New Message', new_message_path, remote: true %>
+
+        </div>
+        <h3> Inbox </h3>
+        <%= render partial: 'list', locals: { messages: @inbox }%>
+      </div>
+
+      <div class="ui twelve wide column">
+        <h3> Outbox </h3>
+        <%= render partial: 'list', locals: { messages: @outbox } %>
+
+      </div>
+    </div>
+  </div>
