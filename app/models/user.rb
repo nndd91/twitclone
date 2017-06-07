@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_followings, source: :followed
   has_many :followers, through: :passive_followings, source: :follower
 
+
+  has_many :likes, dependent: :destroy
+
   has_many :active_messages, class_name: "Message", 
                               foreign_key: "from_user_id",
                               dependent: :destroy

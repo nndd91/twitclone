@@ -18,5 +18,5 @@
 
 .byebug_history
 .env
-.lock
+*.lock
 schema.rb

@@ -9,15 +9,25 @@
 # Create first admin user
 email = "demo@demo.com"
 password = "password"
+first_name = "Demo"
+last_name = Faker::Name.last_name
+username = "Demo"
+age = Faker::Number.between(15, 30)
+is_admin = true
 
-User.create(email: email, password: password, password_confirmation: password)
+User.create(email: email, password: password, password_confirmation: password, is_admin: is_admin)
 
 # Creating Remaining Users
 40.times do
+  username = Faker::Internet.user_name
   email = Faker::Internet.email
   password = "password"
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  age = Faker::Number.between(15, 30)
 
-  User.create(email: email, password: password, password_confirmation: password)
+  User.create(username: username, email: email, password: password, password_confirmation: password,
+              first_name: first_name, last_name: last_name, age: age )
 end
 
 # Create some tweets
@@ -30,7 +40,7 @@ end
 end
 
 # Link Users together
-500.times do
+300.times do
   offset = rand(User.count)
   follower = User.offset(offset).limit(1).first
   offset = rand(User.count)
@@ -41,4 +51,17 @@ end
     followed = User.offset(offset).limit(1).first
   end
     Following.create(follower_id: follower.id, followed_id: followed.id)
+end
+
+600.times do
+  offset = rand(Tweet.count)
+  tweet = Tweet.offset(offset).limit(1).first
+  offset = rand(User.count)
+  user = User.offset(offset).limit(1).first
+
+  while tweet.likes.exists?(user_id: user.id)
+    offset = rand(User.count)
+    user = User.offset(offset).limit(1).first
+  end
+    Like.create(tweet_id: tweet.id, user_id: user.id)
 end
