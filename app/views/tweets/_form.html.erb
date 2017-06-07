@@ -15,7 +15,7 @@
 						<%= image_tag(image.media_location.thumb.url) %>
 						<%= f.label :remove_media_location, 'Remove' %>
             <%= f.input :remove_media_location, as: :boolean, label: false%>
-            <%= button_to "Remove", image.remove_avatar %>
+            <%= button_to "Remove", image_path(image), method: :delete, remote: true %>
 					<% end %>
 				<% end %>
 			</div>

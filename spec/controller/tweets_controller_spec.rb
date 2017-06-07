@@ -43,7 +43,11 @@ RSpec.describe TweetsController, type: :controller do
       context 'when tweet#save passes' do
         let(:params) { attributes_for(:tweet) }
         it { expect(Tweet.count).to eq(1)}
-        it { expect(response).to redirect_to tweets_path }
+
+        it do
+         created_tweet = assigns(:tweet)
+         expect(response).to redirect_to tweet_path(created_tweet)
+        end
       end
 
       context 'when tweet#save fails' do

@@ -15,7 +15,7 @@ class TweetsController < ApplicationController
     if @tweet.save
       @image = @tweet.images.build(media_location: tweet_params[:media_location])
       @image.save
-      redirect_to tweets_path
+      redirect_to tweet_path(@tweet)
     else
       render :new
     end
