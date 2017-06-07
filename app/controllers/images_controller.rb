@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
 
   def create
+    # Not implemented yet.
   end
 
   def destroy
