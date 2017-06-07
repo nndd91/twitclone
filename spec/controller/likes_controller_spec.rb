@@ -24,12 +24,13 @@ RSpec.describe LikesController, type: :controller do
       # let!(:like) { create(:like, tweet: tweet, user: user) }
 
       before do
-        post :create, params: { tweet_id: tweet.id, user_id: user}
+        post :create, xhr: true, params: { tweet_id: tweet.id, user_id: user}
       end
 
       it { expect(User.count).to eq(1) }
       it { expect(Tweet.count).to eq(1) }
       it { expect(Like.count).to eq(1) }
+      it { expect(response).to render_template(:create) }
     end
 
     describe 'DELETE #destroy' do
@@ -39,12 +40,13 @@ RSpec.describe LikesController, type: :controller do
       let!(:like2) { create(:like, tweet: tweet2, user: user) }
 
       before do
-        delete :destroy, params: { id: like, tweet: tweet }
+        delete :destroy, xhr: true, params: { id: like, tweet: tweet }
       end
 
       it { expect(User.count).to eq(1) }
       it { expect(Tweet.count).to eq(2) }
       it { expect(Like.count).to eq(1) }
+      it { expect(response).to render_template(:destroy) }
 
     end
   end
