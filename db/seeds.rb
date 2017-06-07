@@ -42,7 +42,7 @@ end
 
 
 # Link Users together
-500.times do
+200.times do
   offset = rand(User.count)
   follower = User.offset(offset).limit(1).first
   offset = rand(User.count)

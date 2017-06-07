@@ -1,12 +1,11 @@
 class MessageController < ApplicationController
 
 	def create
-    @profile_id=params[:profile_id]
-    @message = Message.create(from_user_id: params[:profile_id],
-    to_user_id: params[:message][:to_user_id], body: params[:message][:body])
+  
+    @message = Message.create(message_params)
 
     if @message.save
-      redirect_to profile_message_index_path
+      redirect_to message_index_path
     else
       render :new
     end
@@ -14,9 +13,11 @@ class MessageController < ApplicationController
   end
 
   def new
-    @profile_id=params[:profile_id]
-    @user=User.all
     @message = Message.new
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   def show
@@ -24,19 +25,19 @@ class MessageController < ApplicationController
   end
 
   def index
-    @message = Message.where(from_user_id:params[:profile_id])
-    #@user= User.find(params[:to_user_id])
- 
+    @message = Message.new
+    @inbox = Message.where(to_user_id: current_user.id)
+    @outbox = Message.where(from_user_id: current_user.id)
    end
 
   def destroy
    Message.find(params[:id]).destroy
-   redirect_to profile_message_path(params[:profile_id])
+   redirect_to message_path(params[:profile_id])
   end
 
   private
   def message_params
-    params.require(:body).permit(:body, :from_user_id, :to_user_id)
+    params.require(:message).permit(:body, :from_user_id, :to_user_id)
   end
 
 end

@@ -9,13 +9,14 @@ RSpec.describe MessageController, type: :controller do
 
     before do
       sign_in user
-      post :create, params: {profile_id:1, from_user_id: user, body: params, to_user_id: user2}
+      post :create, params: { from_user_id: user, to_user_id: user2, body: [:message][:body] }
+
     end
 
     context 'when user#message passes' do
       let(:params) { user }
       it { expect(Message.count).to eq(1) }
-      it { expect(response).to redirect_to profile_message_path(params[:id]) }
+      it { expect(response).to redirect_to profile_index_path }
     end
   end
 
