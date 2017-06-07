@@ -2,30 +2,29 @@
 	<div class="statistic"></div>
 	<div class="statistic">
 		<div class="value">
-			Gerald
+			<%= current_user.first_name %>
 		</div>
 		<div class="label">user</div>
 	</div>
 	<div class="statistic">
 		<div class="value">
-			22
+			<%= current_user.tweets.count %>
 		</div>
 		<div class="label">
 			Tweets
 		</div>
 	</div>
 	<div class="statistic">
-		<div class="text value">
-			Three<br>
-			Thousand
+		<div class="value">
+			<%= current_user.following.count %>
 		</div>
 		<div class="label">
-			Friends
+			Following
 		</div>
 	</div>
 	<div class="statistic">
 		<div class="value">
-			42
+			<%= current_user.followers.count %>
 		</div>
 		<div class="label">
 			Followers

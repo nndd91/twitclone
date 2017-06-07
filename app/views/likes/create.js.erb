@@ -1,0 +1,8 @@
+// Refresh Likes Counter
+var tweetid = <%= @tweet.id %>;
+var likescount = <%= @tweet.likes.count %>;
+$('#likescount-' + tweetid).html(likescount + " Likes");
+
+// Refresh Link to Like/Unlike
+$('#likes_link-' + tweetid).html("<%= j render partial: 'likes/likebutton', locals: { tweet: @tweet } %>");
+
