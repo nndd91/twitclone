@@ -1,7 +1,7 @@
 <% if tweet.images.present? %>
   <div class="ui sixteen grid">
     <% tweet.images.each do |image| %>
-      <% if image.media_location.thumb.url.present? %>
+      <% if image.media_location.present? %>
         <div class="ui four wide column">
           <%= image_tag(image.media_location.thumb.url) %>
           <%= link_to "Remove", image_path(image), method: :delete, remote: true %>

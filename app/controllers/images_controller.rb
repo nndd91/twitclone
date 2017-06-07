@@ -5,6 +5,7 @@ class ImagesController < ApplicationController
 
   def destroy
     @image = Image.find(params[:id])
+    @tweet = Tweet.find(@image.tweet_id)
     @image.remove_media_location!
     @image.save
     @image.destroy
