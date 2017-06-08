@@ -1,0 +1,26 @@
+<div class="ui six statistics">
+  <div class="statistic"></div>
+  <div class="statistic">
+    <div class="value">
+      <%= current_user.first_name %>
+    </div>
+    <div class="label">user</div>
+  </div>
+  <div class="statistic">
+    <div class="value">
+      <%= Message.where(to_user_id: current_user.id).count %>
+    </div>
+    <div class="label">
+      Inbox
+    </div>
+  </div>
+  <div class="statistic">
+    <div class="value">
+      <%= Message.where(from_user_id: current_user.id).count %>
+    </div>
+    <div class="label">
+      Outbox
+    </div>
+  </div>
+  
+</div>

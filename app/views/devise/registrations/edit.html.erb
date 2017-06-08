@@ -45,10 +45,9 @@
                   <div class="ui eight wide column">
                     <div class="field">
                       <%= f.label :password %>
-                      <%= f.password_field :password, autocomplete: "off" %><br/>
+                      <%= f.password_field :password, autocomplete: "off",  placeholder: "leave blank if you don't want to change it"  %><br/>
 
-                      <i> (leave blank if you don't want to change it)
-                      <% if @minimum_password_length %></i>
+                      <i><% if @minimum_password_length %></i>
                         <em><%= @minimum_password_length %> characters minimum</em>
                       <% end %>
                     </div>
