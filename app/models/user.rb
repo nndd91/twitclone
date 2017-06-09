@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   has_many :likes, dependent: :destroy
 
-  has_many :active_messages, class_name: "Message", 
+  has_many :active_messages, class_name: "Message",
                               foreign_key: "from_user_id",
                               dependent: :destroy
 
@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
   has_many :from_user, through: :active_messages, source: :from_user_id
   has_many :to_user, through: :passive_messages, source: :to_user_id
 
+  has_many :mentions, dependent: :destroy
+  has_many :mentioned_in_tweets, class_name: "Tweet", foreign_key: "tweet_id", through: :mentions, source: :tweet
 
   # User Avatar Validation
   validates_integrity_of  :avatar
