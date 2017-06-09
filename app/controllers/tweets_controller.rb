@@ -13,7 +13,9 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
-      redirect_to tweets_path
+      @image = @tweet.images.build(media_location: tweet_params[:media_location])
+      @image.save
+      redirect_to edit_tweet_path(@tweet)
     else
       render :new
     end
@@ -32,7 +34,9 @@ class TweetsController < ApplicationController
   def update
     @tweet = Tweet.find(params[:id])
     @tweet.update(tweet_params)
-    redirect_to tweets_path
+    @image = @tweet.images.build(media_location: tweet_params[:media_location])
+    @image.save
+    redirect_to edit_tweet_path(@tweet)
   end
 
   def show
@@ -47,6 +51,6 @@ class TweetsController < ApplicationController
 
   private
   def tweet_params
-    params.require(:tweet).permit(:body, :user_id)
+    params.require(:tweet).permit(:body, :user_id, :media_location)
   end
 end

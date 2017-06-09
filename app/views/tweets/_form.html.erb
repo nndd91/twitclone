@@ -1,16 +1,25 @@
 <div class="ui container">
-		<%= form_for @tweet do |f| %>
+
+	<div class="ui form segment">
+	<h3>New Tweet</h3>
+		<%= simple_form_for @tweet do |f| %>
 			<div class="field">
-				<%= f.label :body %>
-				<%= f.text_area :body %>
+				<%= f.input :body, as: :text %>
+			</div>
+			<div class="field">
+				<%= f.file_field :media_location %>
+				<%= f.hidden_field :media_location_cache %>
+			</div>
+			<div class="field" id="imageupload">
+				<%= render partial: 'images/image_upload', locals: { tweet: @tweet } %>
 			</div>
 
-			<div class="ui primary submit labeled icon button">
-				<%# f.submit "" , class: "ui primary submit labeled icon button"%>
-				<%= f.submit %>
+			<div class="actions">
+				<%= f.button :submit, class: "ui primary submit button"%>
 			</div>
 
 
 		<% end %>
+	</div>
 
 </div>
