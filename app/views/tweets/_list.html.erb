@@ -1,5 +1,6 @@
 <% if @tweets.exists? %>
 <div class="ui segments">
+  <% @tweets = @tweets.page(params[:page]).per(10) %>
   <% @tweets.each do |tweet| %>
     <div class="ui segment">
       <div class="ui sixteen wide grid">
@@ -40,5 +41,6 @@
       </div>
     </div>
   <% end %>
+
 </div>
 <% end %>

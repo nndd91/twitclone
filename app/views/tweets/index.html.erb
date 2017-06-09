@@ -7,6 +7,8 @@
     <div class="ui twelve wide column">
       <%= link_to 'New Tweet', new_tweet_path %>
       <%= render 'list' %>
+        <%= paginate @tweets %>
+        <%= page_entries_info @tweets %>
     </div>
   </div>
 </div>
