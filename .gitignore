@@ -20,3 +20,4 @@
 .env
 *.lock
 schema.rb
+/public/uploads/*

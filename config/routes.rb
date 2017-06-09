@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get :feed
     end
     resources :likes, only: [:create, :destroy], shallow: true
+    resources :images, only: [:create, :destroy], shallow: true
   end
 
   resources :message
