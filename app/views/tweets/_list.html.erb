@@ -28,16 +28,17 @@
               <% if tweet.user_id == current_user.id %>
                 <%= link_to 'Show', tweet_path(tweet) %><br />
                 <%= link_to 'Edit', edit_tweet_path(tweet) %><br />
-                <%= link_to 'Delete', tweet_path(tweet), method: :delete %><br />
+                <%= link_to 'Delete', tweet_path(tweet), method: :delete, data:{confirm: "Confirm?"}   %>
+
               <% end %>
               <a class="reply">Reply</a>
+              <br/> 
+              Replies:<%= Reply.where("tweet_id= #{tweet.id}").count %>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   <% end %>
 </div>
 <% end %>
-

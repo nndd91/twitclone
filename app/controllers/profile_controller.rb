@@ -18,6 +18,7 @@ class ProfileController < ApplicationController
     @following = find_following
   end
 
+
   private
 
   def find_following
