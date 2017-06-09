@@ -15,7 +15,7 @@ username = "Demo"
 age = Faker::Number.between(15, 30)
 is_admin = true
 
-User.create(email: email, password: password, password_confirmation: password, is_admin: is_admin)
+User.create(email: email, password: password, password_confirmation: password, is_admin: is_admin, first_name: first_name, last_name: last_name, age: age)
 
 # Creating Remaining Users
 40.times do
