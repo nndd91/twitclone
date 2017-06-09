@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'mentions/create'
+
+  get 'mentions/destroy'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 	devise_for :users, controllers: { registrations: 'users/registrations'}
 
