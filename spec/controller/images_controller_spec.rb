@@ -15,6 +15,7 @@ RSpec.describe ImagesController, type: :controller do
       before do
         delete :destroy, xhr: true, params: { id: images[0].id }
       end
+      it { expect(Tweet.count).to eq(1) }
       it { expect(Image.count).to eq(2) }
       it { expect(response).to render_template(:destroy)}
     end

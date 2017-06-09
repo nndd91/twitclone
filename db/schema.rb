@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 20170607094304) do
     t.index ["follower_id"], name: "index_followings_on_follower_id"
   end
 
+  create_table "images", force: :cascade do |t|
+    t.integer "tweet_id"
+    t.string "media_location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "tweet_id"
     t.integer "user_id"
