@@ -4,6 +4,7 @@
     <%= link_to 'Message', message_index_path, class: 'navbar-link item' %>
     <%= link_to 'Following', get_following_profile_path(current_user), class: 'navbar-link item' %>
     <%= link_to 'Followers', get_followers_profile_path(current_user), class: 'navbar-link item' %>
+    <%= link_to 'Search User', search_profile_index_path, class: 'navbar-link item' %>
     
     <div class="right menu">
     <%= link_to "Welcome #{current_user.first_name}", profile_path(current_user), class: 'navbar-link item' %>

@@ -17,7 +17,15 @@ class ProfileController < ApplicationController
     @relationship = @user.followers
     @following = find_following
   end
-
+  
+  def search
+    @allusers = User.new
+    if params[:user] == nil or params == nil
+      @user = User.all
+    else
+      @user = User.where(["first_name LIKE ?", "%#{params[:user][:first_name]}%"])
+    end
+  end
 
   private
 

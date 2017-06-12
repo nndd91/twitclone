@@ -22,6 +22,10 @@ Rails.application.routes.draw do
       get :get_following
       get :get_followers
     end
+    collection do
+      get :search
+      post :search
+    end
     resources :followings, only: [:create, :destroy], shallow: true
 
     # shallow: true to reduce url length, also profile_id is redundant in delete.
