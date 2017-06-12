@@ -19,8 +19,12 @@ class ProfileController < ApplicationController
   end
   
   def search
-    @allusers=User.all
-    @user=User.where(["title LIKE ?", "%#{params[:email]}%"])
+    @allusers = User.new
+    if params[:user] == nil or params==nil
+      @user = User.all
+    else
+      @user = User.where(["first_name LIKE ?", "%#{params[:user][:first_name]}%"])
+    end
   end
 
   private
