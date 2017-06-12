@@ -1,1 +1,9 @@
-<h1> Show! </h1>
+<%= render 'layouts/navbar'%>
+<%= render 'layouts/stats'%>
+  <div class="ui sixteen wide centered grid">
+    <div class="ui twelve wide column">
+      <div class="ui segments">
+        <%= @tweet.body %>
+      </div>
+    </div>
+  </div>
