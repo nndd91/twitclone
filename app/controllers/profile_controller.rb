@@ -20,7 +20,7 @@ class ProfileController < ApplicationController
   
   def search
     @allusers = User.new
-    if params[:user] == nil or params==nil
+    if params[:user] == nil or params == nil
       @user = User.all
     else
       @user = User.where(["first_name LIKE ?", "%#{params[:user][:first_name]}%"])
