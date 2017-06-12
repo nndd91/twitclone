@@ -7,11 +7,11 @@
     <%= link_to 'Search User', search_profile_index_path, class: 'navbar-link item' %>
 
     <div class="right menu">
-    <div class="ui simple dropdown item">
-      <%= link_to "<i class='info icon'></i><div class='ui left pointing label'>1</div>".html_safe, root_path %>
+    <div class="ui simple dropdown item" id="mentions-menu">
+      <i class='info icon'></i>
       <div class="menu">
-        <% current_user.mentioned_in_tweets.limit(5).each do |mentioned| %>
-          <div class="item" id="popout"><%= link_to mentioned.user.username, profile_path(mentioned.user) %> mentioned you in a <%= link_to 'Tweet', tweet_path(mentioned.id) %>!</div>
+        <% current_user.mentions.limit(5).each do |mentioned| %>
+          <div class="item" id="popout" data-mentionid= <%= mentioned.id.to_s %> ><%= link_to mentioned.user.username, profile_path(mentioned.user) %> mentioned you in a <%= link_to 'Tweet', tweet_path(mentioned.tweet.id) %>!</div>
         <% end %>
       </div>
     </div>
