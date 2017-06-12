@@ -13,8 +13,11 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
-      @image = @tweet.images.build(media_location: tweet_params[:media_location])
-      @image.save
+      if tweet_params[:media_location].present?
+        @image = @tweet.images.build(media_location: tweet_params[:media_location])
+        @image.save
+      end
+
       redirect_to edit_tweet_path(@tweet)
     else
       render :new

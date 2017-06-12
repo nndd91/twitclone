@@ -30,6 +30,12 @@
                   <%= f.file_field :avatar %>
                   <%= f.hidden_field :avatar_cache %>
                 </div>
+
+                <div class="field">
+                  <%= f.label :private %>
+                  <%= f.select :private, [["True", true], ["False", false]] %>
+                </div>
+
                 <div class="field">
                   <%= f.label :email %>
                   <%= f.email_field :email, autofocus: true %>

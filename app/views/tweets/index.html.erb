@@ -3,10 +3,16 @@
 
 <%= render 'layouts/stats'%>
   <div class="ui sixteen wide centered grid">
-
     <div class="ui twelve wide column">
+      <% if flash[:notice] %>
+        <div class="alert alert-warning" role="alert" style="border: solid 1px red;padding: 5px; color: red;">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
       <%= link_to 'New Tweet', new_tweet_path %>
       <%= render 'list' %>
+        <%= paginate @tweets %>
+        <%= page_entries_info @tweets %>
     </div>
   </div>
 </div>

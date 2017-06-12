@@ -7,16 +7,17 @@
         </div>
         <div class="ui twelve wide column">
           <h1><%= @user.email %></h1>
-
-          <% if @following %>
-            <%= button_to 'Unfollow',
-                following_path(:following_id => @following.id),
-                                :method => :delete, :class => "ui button"%>
-          <% else %>
-            <%= button_to 'Follow',
-                profile_followings_path(:profile_id=> @user.id,
-                                        :follower_id => current_user.id),
-                                        :method => :post, :class => "ui button" %>
+          <% if  @user != current_user %>
+            <% if @following %>
+              <%= button_to 'Unfollow',
+                  following_path(:following_id => @following.id),
+                                  :method => :delete, :class => "ui button"%>
+            <% else %>
+              <%= button_to 'Follow',
+                  profile_followings_path(:profile_id=> @user.id,
+                                          :follower_id => current_user.id),
+                                          :method => :post, :class => "ui button" %>
+            <% end %>
           <% end %>
 
           <% following = "Following: #{@user.following.count}"%>
