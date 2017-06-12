@@ -1,5 +1,4 @@
 class Reply < ApplicationRecord
-	belongs_to :user_id, class_name: "User"
-	belongs_to :tweet_id, class_name: "Tweet"
-
+	belongs_to :user, class_name: "User"
+	belongs_to :tweet, class_name: "Tweet"
 end
