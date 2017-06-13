@@ -4,7 +4,6 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all
-    @reply= Reply.new
     
   end
 

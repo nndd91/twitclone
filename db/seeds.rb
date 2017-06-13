@@ -59,8 +59,7 @@ end
 
   tweet = Tweet.offset(offset).limit(1).first
 
-  Reply.create(tweet: tweet, 
-      body: body, user: from_user_id)
+  Reply.create(tweet: tweet, body: body, user: from_user_id)
 end
 # Link Users together
 

@@ -27,38 +27,38 @@
           </div>
 
           <div class="ten wide column">
-          <div class="ui accordion">
-            <div class="title">
-              <i class="dropdown icon"></i>
-              Comments (<%= tweet.replys.count %>)
-            </div>
-            <div class="content">
-              <p>
-               <div class="ui comments">
-                <h3 class="ui dividing header">Comments </h3> 
-                <% tweet.replys.each do |comment| %>
+            <div class="ui accordion">
+              <div class="title">
+                <i class="dropdown icon"></i>
+                Comments (<%= tweet.replys.count %>)
+              </div>
+              <div class="content">
+                <p>
+                 <div class="ui comments">
+                  <h3 class="ui dividing header">Comments </h3> 
+                  <% tweet.replys.each do |comment| %>
 
-                <div class="comment">
-                  <a class="avatar">
-                    <%= image_tag(tweet.user.avatar.thumb.url, :class => 'ui avatar image' )%>
-                  </a>
-                  <div class="content">
-                    <a class="author"><%= User.find(comment.user_id).username %></a>
-                    <div class="text"><%= comment.body %></div>
+                  <div class="comment">
+                    <a class="avatar">
+                      <%= image_tag(tweet.user.avatar.thumb.url, :class => 'ui avatar image' )%>
+                    </a>
+                    <div class="content">
+                      <a class="author"><%= User.find(comment.user_id).username %></a>
+                      <div class="text"><%= comment.body %></div>
+                    </div>
                   </div>
-                </div>
-                <% end %>
-                <br/>
-                <%= simple_form_for tweet.replys.build(), url:reply_index_path(tweet)  do |f| %>
+                  <% end %>
+                  <br/>
+                  <%= simple_form_for tweet.replys.build(), url:reply_index_path(tweet)  do |f| %>
                   <div class= 'ui fluid action input'>
                     Comment: <%= f.text_field :body , as: :text, rows: "3" %><br/>
                   </div><br/>
                   <div>
-                  <%= f.button :submit, class: 'ui primary submit icon button' %>
+                    <%= f.button :submit, class: 'ui primary submit icon button' %>
                   </div>
-                <% end %>
+                  <% end %>
+                </div>
               </div>
-            </div>
             </p>
           </div>
         </div>
@@ -84,5 +84,5 @@
 <% end %>
 
 <script>
-$('.ui.accordion').accordion()
+  $('.ui.accordion').accordion()
 </script>
