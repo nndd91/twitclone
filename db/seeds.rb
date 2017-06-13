@@ -50,7 +50,18 @@ end
       to_user_id: to_user_id, body: msg_body)
 end
 
+#Create some comment in tweets
+100.times do
+  body = Faker::HarryPotter.quote
+  offset = rand(20)
+  offset2= rand(User.count)
+  from_user_id = User.offset(offset2).limit(1).first
 
+  tweet = Tweet.offset(offset).limit(1).first
+
+  Reply.create(tweet: tweet, 
+      body: body, user: from_user_id)
+end
 # Link Users together
 
 200.times do
@@ -66,7 +77,7 @@ end
     Following.create(follower_id: follower.id, followed_id: followed.id)
 end
 
-600.times do
+200.times do
   offset = rand(Tweet.count)
   tweet = Tweet.offset(offset).limit(1).first
   offset = rand(User.count)
