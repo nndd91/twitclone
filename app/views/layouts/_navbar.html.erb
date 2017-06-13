@@ -10,8 +10,16 @@
     <div class="ui simple dropdown item" id="mentions-menu">
       <i class='info icon'></i>
       <div class="menu">
-        <% current_user.mentions.limit(5).each do |mentioned| %>
-          <div class="item" id="popout" data-mentionid= <%= mentioned.id.to_s %> ><%= link_to mentioned.user.username, profile_path(mentioned.user) %> mentioned you in a <%= link_to 'Tweet', tweet_path(mentioned.tweet.id) %>!</div>
+
+        <% @notifications[0..7].each do |notification| %>
+          <div class="item" id="popout" style="display: flex; justify-content: space-between;" >
+            <div>
+              <%= link_to User.find(notification[0]).username, profile_path(User.find(notification[0])) %> <%= notification[2] %> <%= link_to 'Tweet', tweet_path(notification[1]) %>!
+            </div>
+            <div>
+              <i><%= notification[3] %> days ago</i>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>
