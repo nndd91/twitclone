@@ -16,8 +16,8 @@
             <div>
               <%= link_to User.find(notification[0]).username, profile_path(User.find(notification[0])) %> <%= notification[2] %> <%= link_to 'Tweet', tweet_path(notification[1]) %>!
             </div>
-            <div>
-              <i><%= notification[3] %> days ago</i>
+            <div id="popouttime">
+              <i><%= notification[3] %></i>
             </div>
           </div>
         <% end %>
