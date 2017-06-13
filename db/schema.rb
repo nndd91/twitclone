@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20170612050424) do
   create_table "replies", force: :cascade do |t|
     t.integer "user_id"
     t.integer "tweet_id"
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "reply_to_id"
