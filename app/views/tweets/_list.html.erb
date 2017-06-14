@@ -9,10 +9,14 @@
           </div>
           <div class="thirteen wide column">
             <div class="row">
-              <b><%= tweet.user.first_name %></b> <%= link_to '@'+tweet.user.username, profile_path(tweet.user)%>
+              <div class="thirteen wide column">
+                <div class="ui medium header"><%= tweet.user.first_name %> <%= link_to '@'+tweet.user.username, profile_path(tweet.user)%></div>
+              </div>
             </div>
             <div class="row">
-              <%= tweet.body %>
+              <div class="thirteen wide column">
+                <%= tweet.body %>
+              </div>
             </div>
 
             <div class="ui sixteen wide grid">
@@ -23,7 +27,7 @@
                 </div>
               </div>
 
-              <div class="sixteen wide column">
+              <div class="sixteen wide column" style="padding: 0px;">
                 <div class="ui accordion">
                   <div class="title">
                     <i class="dropdown icon"></i>
@@ -59,18 +63,18 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="right floated sixteen wide column">
-                <% if tweet.user_id == current_user.id %>
+            <% if tweet.user_id == current_user.id %>
+              <div class="row">
+                <div class="right floated sixteen wide column">
+                    <br />
+                    <%= link_to 'Show', tweet_path(tweet) %>
+                    <%= link_to 'Edit', edit_tweet_path(tweet) %>
+                    <%= link_to 'Delete', tweet_path(tweet), method: :delete, data:{confirm: "Confirm?"}   %>
                   <br />
-                  <%= link_to 'Show', tweet_path(tweet) %>
-                  <%= link_to 'Edit', edit_tweet_path(tweet) %>
-                  <%= link_to 'Delete', tweet_path(tweet), method: :delete, data:{confirm: "Confirm?"}   %>
-                <% end %>
-                <br />
-                <br />
+                  <br />
+                </div>
               </div>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
