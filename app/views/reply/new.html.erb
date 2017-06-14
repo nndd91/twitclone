@@ -1,9 +1,10 @@
 <%= render 'layouts/navbar'%>
+
 <div class="ui form">
-<%= simple_form_for @reply, url: reply_index_path do |f| %>
-  <div class='field'>
-    Comment: <%= f.input :body , as: :text %><br/>
-  </div>
-  <%= f.button :submit, class: 'ui primary submit icon button' %>
+  <%= simple_form_for @reply, url: reply_index_path do |f| %>
+    <div class='field'>
+      Comment: <%= f.input :body , as: :text %><br/>
+    </div>
+    <%= f.button :submit, class: 'ui primary submit icon button' %>
   <% end %>
 </div>

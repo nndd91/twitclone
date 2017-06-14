@@ -1,17 +1,18 @@
 <table class="ui single line table">
- <tr>
+  <tr>
    <th>Email</th>
    <th>Message</th>
    <th></th>
    <th></th>
- </tr>
-<% messages.each do |message| %>
-<tr>
-<td><%= User.find(message.to_user_id).email %></td>
-<td><%= message.body %></td>
-<td><%= link_to 'Show' %></td>
-<td><%= link_to 'Delete', message_path(message.id), method: :delete, data: { confirm: "Are you sure you want to do this message?" } %></td>
   </tr>
-<% end %>
+
+  <% messages.each do |message| %>
+    <tr>
+      <td><%= User.find(message.to_user_id).email %></td>
+      <td><%= message.body %></td>
+      <td><%= link_to 'Show' %></td>
+      <td><%= link_to 'Delete', message_path(message.id), method: :delete, data: { confirm: "Are you sure you want to do this message?" } %></td>
+    </tr>
+  <% end %>
 </table>
 

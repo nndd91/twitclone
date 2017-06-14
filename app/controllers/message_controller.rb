@@ -8,7 +8,6 @@ class MessageController < ApplicationController
     else
       render :new
     end
-
   end
 
   def new
@@ -16,8 +15,6 @@ class MessageController < ApplicationController
     respond_to do |format|
       format.js
     end
-    
-
   end
 
   #def show
