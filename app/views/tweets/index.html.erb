@@ -9,7 +9,9 @@
           <%= flash[:notice] %>
         </div>
       <% end %>
-      <%= link_to 'New Tweet', new_tweet_path %>
+      <div style="display: flex; justify-content: flex-end;">
+        <%= link_to 'New Tweet', new_tweet_path , class: 'ui primary submit icon button' %>
+      </div>
       <%= render 'list' %>
         <%= paginate @tweets %>
         <%= page_entries_info @tweets %>

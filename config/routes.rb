@@ -22,7 +22,12 @@ Rails.application.routes.draw do
     resources :images, only: [:create, :destroy], shallow: true
   end
 
-  resources :message
+
+  resources :message do
+    collection do
+      get :close
+    end
+  end
   post 'message/new' => 'message#create', :as=>"create_message"
 
   resources :profile, only: [:show] do

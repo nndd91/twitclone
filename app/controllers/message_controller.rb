@@ -21,6 +21,12 @@ class MessageController < ApplicationController
    #@message = Message.find(params[:id])
   #end
 
+  def close
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def index
     @inbox = Message.where(to_user_id: current_user.id)
     @outbox = Message.where(from_user_id: current_user.id)
