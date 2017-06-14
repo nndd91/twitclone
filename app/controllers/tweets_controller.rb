@@ -17,23 +17,7 @@ class TweetsController < ApplicationController
         @image = @tweet.images.build(media_location: tweet_params[:media_location])
         @image.save
       end
-      pattern = /\A@\w+/
-      mention_array = []
-      @tweet.body.split(' ').map do |word|
-        if pattern.match?(word)
-          mention_array << word
-        end
-      end
-
-      mention_array.each do |mention|
-        mention.gsub!('@', '')
-        if User.exists?(username: mention)
-          @mention = @tweet.mentions.build(user: User.find_by(username: mention))
-          if !Mention.exists?(tweet: @tweet, user: User.find_by(username: mention))
-            @mention.save
-          end
-        end
-      end
+      MentionsCreator.new(@tweet).call
 
       redirect_to edit_tweet_path(@tweet)
     else
@@ -56,39 +40,7 @@ class TweetsController < ApplicationController
     @tweet.update(tweet_params)
     @image = @tweet.images.build(media_location: tweet_params[:media_location])
     @image.save
-
-    # Check for mentions
-    pattern = /\A@\w+/
-    mention_array = []
-    @tweet.body.split(' ').map do |word|
-      if pattern.match?(word)
-        mention_array << word
-      end
-    end
-
-    mention_array.each do |mention|
-      mention.gsub!('@', '')
-      if User.exists?(username: mention)
-        @mention = @tweet.mentions.build(user: User.find_by(username: mention))
-        if !Mention.exists?(tweet: @tweet, user: User.find_by(username: mention))
-          @mention.save
-        end
-      end
-    end
-
-    #Delete removed mentions
-    mention_existed_array = []
-    @tweet.mentions.each do |mention|
-      mention_existed_array << mention.user.username
-    end
-
-    delete_array = mention_existed_array.reject { |mention| mention_array.include?(mention) }
-
-    delete_array.each do |mention|
-      @mention = Mention.find_by(user: User.find_by(username: mention))
-      @mention.destroy
-    end
-
+    MentionsUpdater.new(@tweet).call
     redirect_to edit_tweet_path(@tweet)
   end
 
