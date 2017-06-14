@@ -21,3 +21,4 @@
 *.lock
 /db/schema.rb
 /public/uploads/*
+coverage

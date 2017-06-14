@@ -1,1 +1,2 @@
 $('#newmessagebox').html("<%= j render partial: 'form' %>")
+$('#newmessagebutton').html("<%= j link_to 'Close', close_message_index_path, remote: true, class: 'ui primary button' %>")

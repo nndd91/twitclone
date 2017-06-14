@@ -4,7 +4,6 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all
-    
   end
 
   def new
@@ -18,6 +17,7 @@ class TweetsController < ApplicationController
         @image = @tweet.images.build(media_location: tweet_params[:media_location])
         @image.save
       end
+      MentionsCreator.new(@tweet).call
 
       redirect_to edit_tweet_path(@tweet)
     else
@@ -40,6 +40,7 @@ class TweetsController < ApplicationController
     @tweet.update(tweet_params)
     @image = @tweet.images.build(media_location: tweet_params[:media_location])
     @image.save
+    MentionsUpdater.new(@tweet).call
     redirect_to edit_tweet_path(@tweet)
   end
 

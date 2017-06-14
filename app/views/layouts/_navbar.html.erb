@@ -1,14 +1,31 @@
   <div class="ui orange inverted pointing menu">
-  	
+
     <%= link_to 'Home', tweets_path, class: 'navbar-link item' %>
     <%= link_to 'Message', message_index_path, class: 'navbar-link item' %>
     <%= link_to 'Following', get_following_profile_path(current_user), class: 'navbar-link item' %>
     <%= link_to 'Followers', get_followers_profile_path(current_user), class: 'navbar-link item' %>
     <%= link_to 'Search User', search_profile_index_path, class: 'navbar-link item' %>
-    
+
     <div class="right menu">
+    <div class="ui simple dropdown item" id="mentions-menu">
+      <i class='info icon'></i>
+      <div class="menu">
+
+        <% @notifications[0..7].each do |notification| %>
+          <div class="item" id="popout" style="display: flex; justify-content: space-between;" >
+            <div>
+              <%= link_to User.find(notification[0]).username, profile_path(User.find(notification[0])) %> <%= notification[2] %> <%= link_to 'Tweet', tweet_path(notification[1]) %>!
+            </div>
+            <div id="popouttime">
+              <i><%= notification[3] %></i>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
     <%= link_to "Welcome #{current_user.first_name}", profile_path(current_user), class: 'navbar-link item' %>
-      <%= link_to 'Account Settings', edit_user_registration_path, class: 'navbar-link item' %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link item'   %>
+    <%= link_to 'Account Settings', edit_user_registration_path, class: 'navbar-link item' %>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link item'   %>
     </div>
   </div>

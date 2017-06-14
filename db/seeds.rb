@@ -61,6 +61,7 @@ end
 
   Reply.create(tweet: tweet, body: body, user: from_user_id)
 end
+
 # Link Users together
 
 200.times do
@@ -76,6 +77,7 @@ end
     Following.create(follower_id: follower.id, followed_id: followed.id)
 end
 
+# Create Likes
 200.times do
   offset = rand(Tweet.count)
   tweet = Tweet.offset(offset).limit(1).first

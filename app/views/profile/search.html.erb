@@ -1,24 +1,30 @@
 <%= render 'layouts/navbar'%>
-<div class="ui container">"
+<div class="ui container">
   <div class="ui form">
     <%= simple_form_for @allusers, url: search_profile_index_path  do |f| %>
       <br/>
       <div class='field'>
-        Search for : <%= f.text_field :first_name , as: :text %><br/>
+        Search for : <%= f.text_field :searchvalue , as: :text %><br/>
       </div>
       <%= f.button :submit , "Search" ,  class: 'ui primary submit icon button' %>
     <% end %>
   </div>
 
-
   <table class="ui single line table">
     <tr>
       <th>Email</th>
     </tr>
-    <% @user.each do |u| %>
+    <% if @users.nil? %>
       <tr>
-      <td><%= link_to u.email , profile_path(u) %></td>
-    </tr>
+        <td>No users found..</td>
+      </tr>
+    <% else %>
+      <% @users.each do |u| %>
+        <% user = User.find(u) %>
+        <tr>
+        <td><%= link_to user.email , profile_path(user) %></td>
+      </tr>
+      <% end %>
     <% end %>
   </table>
 </div>

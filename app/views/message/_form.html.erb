@@ -1,11 +1,14 @@
 <div class="ui form">
-<%= simple_form_for @message, url: create_message_path  do |f| %>
-  To: <%= f.collection_select :to_user_id, User.all, :id , :email %>
-  <%= f.hidden_field :from_user_id, value: current_user.id %>
-  <br/>
-<div class='field'>
-  Message: <%= f.text_field :body , as: :text, rows: "3" %><br/>
-</div>
-  	<%= f.button :submit, class: 'ui primary submit icon button' %>
-<% end %>
+  <%= simple_form_for @message, url: create_message_path  do |f| %>
+    To: <%= f.collection_select :to_user_id, User.all, :id , :email %>
+
+    <%= f.hidden_field :from_user_id, value: current_user.id %>
+    <br/>
+
+    <div class='field'>
+      Message: <%= f.text_field :body , as: :text, rows: "3" %><br/>
+    </div>
+
+    <%= f.button :submit, class: 'ui primary submit icon button' %>
+  <% end %>
 </div>

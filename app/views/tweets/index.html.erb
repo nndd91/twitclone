@@ -1,7 +1,7 @@
 <%= render 'layouts/navbar'%>
 <div class="ui container segments">
+  <%= render 'layouts/stats'%>
 
-<%= render 'layouts/stats'%>
   <div class="ui sixteen wide centered grid">
     <div class="ui twelve wide column">
       <% if flash[:notice] %>
@@ -9,7 +9,9 @@
           <%= flash[:notice] %>
         </div>
       <% end %>
-      <%= link_to 'New Tweet', new_tweet_path %>
+      <div style="display: flex; justify-content: flex-end;">
+        <%= link_to 'New Tweet', new_tweet_path , class: 'ui primary submit icon button' %>
+      </div>
       <%= render 'list' %>
         <%= paginate @tweets %>
         <%= page_entries_info @tweets %>
