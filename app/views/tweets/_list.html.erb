@@ -25,6 +25,9 @@
                 <div id=<%= "likes_link-#{tweet.id}"%>  style="display: inline-block" >
                   <%= render partial: 'likes/likebutton', locals: { tweet: tweet } %>
                 </div>
+                <div>
+                  <%= link_to 'Retweet', retweet_tweet_path(tweet), remote: true %>
+                </div>
               </div>
 
               <div class="sixteen wide column" style="padding: 0px;">

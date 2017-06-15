@@ -18,8 +18,7 @@ class TweetsController < ApplicationController
         @image.save
       end
       MentionsCreator.new(@tweet).call
-
-      redirect_to edit_tweet_path(@tweet)
+      redirect_to tweets_path
     else
       render :new
     end
@@ -54,8 +53,19 @@ class TweetsController < ApplicationController
     @tweets = Tweet.get_tweets(@following, current_user.id)
   end
 
+  def retweet
+    @tweet = Tweet.new
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def create_retweet
+
+  end
+
   private
   def tweet_params
-    params.require(:tweet).permit(:body, :user_id, :media_location)
+    params.require(:tweet).permit(:body, :user_id, :media_location, :retweet_id)
   end
 end

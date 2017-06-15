@@ -1,0 +1,20 @@
+
+<div class="ui segment">
+  <div class="ui sixteen wide grid">
+    <div class="three wide column">
+      <%= image_tag(tweet.user.avatar.thumb.url, :class => 'ui medium circular image' )%>
+    </div>
+    <div class="thirteen wide column">
+      <div class="row">
+        <div class="thirteen wide column">
+          <div class="ui medium header"><%= tweet.user.first_name %> <%= link_to '@'+tweet.user.username, profile_path(tweet.user)%></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="thirteen wide column">
+          <%= tweet.body %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
