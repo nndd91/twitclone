@@ -3,17 +3,19 @@
 		<%= f.input :body, as: :text %>
 	</div>
 
-	<div class="field">
-		<%= f.file_field :media_location %>
-		<%= f.hidden_field :media_location_cache %>
-	</div>
+	<% if params[:id].nil? %>
+		<div class="field">
+			<%= f.file_field :media_location %>
+			<%= f.hidden_field :media_location_cache %>
+		</div>
 
-	<div class="field" id="imageupload">
-		<%= render partial: 'images/image_upload', locals: { tweet: @tweet } %>
-	</div>
-		<% if !params[:id].nil? %>
-			<%= f.hidden_field :retweet_id, value: params[:id] %>
-		<% end %>
+		<div class="field" id="imageupload">
+			<%= render partial: 'images/image_upload', locals: { tweet: @tweet } %>
+		</div>
+	<% else %>
+		<%= f.hidden_field :retweet_id, value: params[:id] %>
+	<% end %>
+
 	<div class="actions">
 		<%= f.button :submit, class: "ui primary submit button"%>
 	</div>

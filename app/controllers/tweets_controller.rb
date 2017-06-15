@@ -3,11 +3,14 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.all.order('created_at DESC')
   end
 
   def new
     @tweet = Tweet.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create

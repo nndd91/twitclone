@@ -13,11 +13,19 @@
                 <div class="ui medium header"><%= tweet.user.first_name %> <%= link_to '@'+tweet.user.username, profile_path(tweet.user)%></div>
               </div>
             </div>
+            <% if !tweet.retweet_id.nil? %>
+              <div class="row">
+                Retweeted:
+              </div>
+              <%= render partial: 'tweetspreview', locals: { tweet: Tweet.find(tweet.retweet_id) } %>
+            <% end %>
             <div class="row">
               <div class="thirteen wide column">
                 <%= tweet.body %>
               </div>
             </div>
+
+
 
             <div class="ui sixteen wide grid">
               <!-- Likes Column -->

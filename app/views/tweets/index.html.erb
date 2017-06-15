@@ -13,7 +13,7 @@
       <% end %>
 
       <div style="display: flex; justify-content: flex-end;">
-        <%= link_to 'New Tweet', new_tweet_path , class: 'ui primary submit icon button' %>
+        <%= link_to 'New Tweet', new_tweet_path, remote: true, class: 'ui primary submit icon button' %>
       </div>
       <%= render 'list' %>
         <%= paginate @tweets %>
