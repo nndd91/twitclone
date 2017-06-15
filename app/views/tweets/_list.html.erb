@@ -17,7 +17,7 @@
               <div class="row">
                 Retweeted:
               </div>
-              <%= render partial: 'tweetspreview', locals: { tweet: Tweet.find(tweet.retweet_id) } %>
+              <%= render partial: 'tweets/tweetspreview', locals: { tweet: Tweet.find(tweet.retweet_id) } %>
             <% end %>
             <div class="row">
               <div class="thirteen wide column">

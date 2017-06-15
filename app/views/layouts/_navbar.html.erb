@@ -23,7 +23,7 @@
         <% end %>
       </div>
     </div>
-
+    <%= link_to "Theme", '#', id: 'buttonID', class: 'navbar-link item' %>
     <%= link_to "Welcome #{current_user.first_name}", profile_path(current_user), class: 'navbar-link item' %>
     <%= link_to 'Account Settings', edit_user_registration_path, class: 'navbar-link item' %>
     <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link item'   %>
