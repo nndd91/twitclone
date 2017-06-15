@@ -1,11 +1,12 @@
-class NotificationPopulator
+class NotificationPresenter
   def initialize(current_user)
     @current_user = current_user
   end
 
-  def calculate
+  def list
     @mentions = []
     @likes = []
+    @retweets = []
 
     @current_user.mentions.order('created_at DESC').limit(20).each do |mention|
       seconds_ago = Time.now.ago(mention.created_at.to_i).to_i
@@ -33,7 +34,20 @@ class NotificationPopulator
       ]
     end
 
-    notifications = @mentions + @likes
+    @current_user.retweets.order('created_at DESC').limit(20).each do |retweet|
+      seconds_ago = Time.now.ago(retweet.created_at.to_i).to_i
+      time_ago_string = get_time_string(seconds_ago)
+
+      @retweets << [
+        retweet.user.id,
+        retweet.id,
+        "retweeted your",
+        time_ago_string,
+        seconds_ago
+      ]
+    end
+
+    notifications = @mentions + @likes + @retweets
 
     notifications.sort! { |x, y| x[4] <=> y[4] }
   end

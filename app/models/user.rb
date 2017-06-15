@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   has_many :mentions, dependent: :destroy
   has_many :mentioned_in_tweets, class_name: "Tweet", foreign_key: "tweet_id", through: :mentions, source: :tweet
 
+  has_many :retweets, through: :tweets
   # User Avatar Validation
   validates_integrity_of  :avatar
   validates_processing_of :avatar
