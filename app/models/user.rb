@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
   validates_integrity_of  :avatar
   validates_processing_of :avatar
 
+  enum theme: { "default": 1, "bluetheme": 2, "redtheme":3, "darktheme":4, "superhero":5 }
+
   attr_accessor :searchvalue
 
   private

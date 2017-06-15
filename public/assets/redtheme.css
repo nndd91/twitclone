@@ -1,0 +1,11 @@
+.ui.inverted.menu {
+    border: 0 solid transparent;
+    background: red !important;
+    box-shadow: none;
+    color: black;
+}
+
+.ui.inverted.menu.item {
+  background: red;
+  color: white;
+}
