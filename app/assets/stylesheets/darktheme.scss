@@ -420,3 +420,16 @@ a:hover {
 .ui.form textarea:focus {
     color: grey;
 }
+
+#retweet {
+  background-color: #222222;
+}
+
+#retweetbox {
+  opacity: 1;
+  background-color: #222222;
+}
+
+#retweet.hidden {
+  display: none;
+}
