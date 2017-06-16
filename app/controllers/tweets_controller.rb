@@ -4,6 +4,7 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all.order('created_at DESC')
+    @user = current_user
   end
 
   def new
@@ -64,6 +65,13 @@ class TweetsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def theme
+    @user = current_user
+    @user.theme = params[:theme]
+    @user.save
+    redirect_to root_path
   end
 
   def create_retweet

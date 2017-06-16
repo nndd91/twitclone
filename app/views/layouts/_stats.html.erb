@@ -1,34 +1,42 @@
-<div class="ui six statistics">
-	<div class="statistic"></div>
-	<div class="statistic">
-		<div class="value">
-			<%= current_user.first_name %>
-		</div>
-		<div class="label">user</div>
-	</div>
-	<div class="statistic">
-		<div class="value">
-			<%= current_user.tweets.count %>
-		</div>
-		<div class="label">
-			Tweets
+<div class="ui fifteen wide grid">
+	<div class="ui fifteen wide column">
+		<div class="ui block header">
+			<h1 class="ui header">
+				<%= @user.first_name %>
+				<div class="sub header">
+					@<%= @user.username %>
+				</div>
+			</h1>
 		</div>
 	</div>
-	<div class="statistic">
-		<div class="value">
-			<%= current_user.following.count %>
-		</div>
-		<div class="label">
-			Following
-		</div>
+	<div class="ui five wide column">
+		<center>
+			<h1 class="ui header">
+				<%= link_to @user.tweets.count, profile_path(@user) %>
+				<div class="sub header">
+					<%= link_to 'Tweets', profile_path(@user) %>
+				</div>
+			</h1>
+		</center>
 	</div>
-	<div class="statistic">
-		<div class="value">
-			<%= current_user.followers.count %>
-		</div>
-		<div class="label">
-			Followers
-		</div>
+	<div class="ui five wide column">
+		<center>
+			<h1 class="ui header">
+				<%= link_to @user.following.count, get_following_profile_path(@user)%>
+				<div class="sub header">
+					<%= link_to 'Following', get_following_profile_path(@user)%>
+				</div>
+			</h1>
+		</center>
 	</div>
-	<div class="statistic"></div>
+	<div class="ui five wide column">
+		<center>
+			<h1 class="ui header">
+				<%= link_to @user.followers.count, get_followers_profile_path(@user)%>
+				<div class="sub header">
+					<%= link_to 'Followers', get_followers_profile_path(@user)%>
+				</div>
+			</h1>
+		</center>
+	</div>
 </div>

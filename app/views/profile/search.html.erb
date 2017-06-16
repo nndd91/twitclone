@@ -15,17 +15,17 @@
       <th>Tags</th>
       <th>No of Tags</th>
     </tr>
-    <% if @tags.nil? %>
+    <% if @tags.nil? || @tags.empty? %>
     <tr>
-      <td>No such tags...</td>
+      <td span=2>No such tags...</td>
     </tr>
     <% else %>
-    <% @tags.each do |t| %>
-    <tr>
-      <td><%= link_to t.name , tag_path(t) %></td>
-      <td><%= Tag.where(name:t.name).count %></td>
-    </tr>
-    <% end %>
+      <% @tags.each do |t| %>
+        <tr>
+          <td><%= link_to t.name , tag_path(t) %></td>
+          <td><%= Tag.where(name:t.name).count %></td>
+        </tr>
+      <% end %>
     <% end %>
   </table>
   <p>
@@ -43,14 +43,14 @@
       </tr>
       <% else %>
       <% @users.each do |u| %>
-      <% user = User.find(u) %>
-      <tr>
-        <td><%= link_to user.email , profile_path(user) %></td>
-        <td><%= user.username %></td>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-      </tr>
-      <% end %>
+        <% user = User.find(u) %>
+          <tr>
+            <td><%= link_to user.email , profile_path(user) %></td>
+            <td><%= user.username %></td>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+          </tr>
+        <% end %>
       <% end %>
     </table>
 

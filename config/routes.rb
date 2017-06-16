@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
     collection do # collection instead of member so url = tweets/feed instead of tweets/:id/feed
       get :feed
+      get :theme
     end
     resources :likes, only: [:create, :destroy], shallow: true
     resources :images, only: [:create, :destroy], shallow: true
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :tags do
   end
-  
+
   resources :message do
     collection do
       get :close

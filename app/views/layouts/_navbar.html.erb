@@ -2,8 +2,6 @@
 
     <%= link_to 'Home', tweets_path, class: 'navbar-link item' %>
     <%= link_to 'Message', message_index_path, class: 'navbar-link item' %>
-    <%= link_to 'Following', get_following_profile_path(current_user), class: 'navbar-link item' %>
-    <%= link_to 'Followers', get_followers_profile_path(current_user), class: 'navbar-link item' %>
     <%= link_to 'Search', search_profile_index_path, class: 'navbar-link item' %>
 
     <div class="right menu">
@@ -14,7 +12,13 @@
           <% @notifications[0..7].each do |notification| %>
           <div class="item" id="popout" style="display: flex; justify-content: space-between;" >
             <div>
-              <%= link_to User.find(notification[0]).username, profile_path(User.find(notification[0])) %> <%= notification[2] %> <%= link_to 'Tweet', tweet_path(notification[1]) %>!
+              <% user = User.find(notification[0]) %>
+              <%= link_to(profile_path(user), class: "ui image label") do %>
+                <%= image_tag(user.avatar.thumb.url) %>
+                <%= user.username %>
+              <% end %>
+              <%= notification[2] %>
+              <%= link_to 'Tweet', tweet_path(notification[1]) %>!
             </div>
             <div id="popouttime">
               <i><%= notification[3] %></i>
@@ -23,8 +27,18 @@
           <% end %>
         </div>
       </div>
+
+      <div class="ui simple dropdown item" id="mentions-menu">
+        Themes
+        <div class="menu">
+          <div class="item" id="popout"><%= link_to 'Default', theme_tweets_path(theme: 'default') %></div>
+          <div class="item" id="popout"><%= link_to 'Red Theme', theme_tweets_path(theme: 'redtheme') %></div>
+          <div class="item" id="popout"><%= link_to 'Blue Theme', theme_tweets_path(theme: 'bluetheme') %></div>
+          <div class="item" id="popout"><%= link_to 'Dark Theme', theme_tweets_path(theme: 'darktheme') %></div>
+          <div class="item" id="popout"><%= link_to 'SuperHero Theme', theme_tweets_path(theme: 'superhero') %></div>
+        </div>
+      </div>
     </div>
-    <%= link_to "Theme", '#', id: 'buttonID', class: 'navbar-link item' %>
     <%= link_to "Welcome #{current_user.first_name}", profile_path(current_user), class: 'navbar-link item' %>
     <%= link_to 'Account Settings', edit_user_registration_path, class: 'navbar-link item' %>
     <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link item'   %>
