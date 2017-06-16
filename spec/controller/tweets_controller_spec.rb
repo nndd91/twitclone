@@ -3,11 +3,21 @@ require 'rails_helper'
 RSpec.describe TweetsController, type: :controller do
 
   context 'user not signed in' do
-    before do
-      get :index
-    end
+      describe 'get #index' do
+        before do
+          get :index
+        end
 
-    it { expect(response).to redirect_to new_user_session_path }
+        it { expect(response).to redirect_to new_user_session_path }
+      end
+
+      describe 'get #home' do
+        before do
+          get :home
+        end
+
+        it { expect(response).to have_http_status(:success) }
+      end
   end
 
   context 'user signed in' do
@@ -122,6 +132,14 @@ RSpec.describe TweetsController, type: :controller do
       it { expect(assigns(:user)).to eq(user) }
       it { expect(assigns(:following)).to eq([following.followed_id]) }
       it { expect(assigns(:tweets)).to eq(all_tweets) }
+    end
+
+    describe 'get #home' do
+      before do
+        get :home
+      end
+
+      it { expect(response).to redirect_to tweets_path }
     end
 
   end
