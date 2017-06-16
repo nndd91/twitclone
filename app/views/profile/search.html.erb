@@ -2,29 +2,58 @@
 <div class="ui container">
   <div class="ui form">
     <%= simple_form_for @allusers, url: search_profile_index_path  do |f| %>
-      <br/>
-      <div class='field'>
-        Search for : <%= f.text_field :searchvalue , as: :text %><br/>
-      </div>
-      <%= f.button :submit , "Search" ,  class: 'ui primary submit icon button' %>
+    <br/>
+    <div class='field'>
+      Search for : <%= f.text_field :searchvalue , as: :text %><br/>
+    </div>
+    <%= f.button :submit , "Search" ,  class: 'ui primary submit icon button' %>
     <% end %>
   </div>
 
   <table class="ui single line table">
     <tr>
-      <th>Email</th>
+      <th>Tags</th>
+      <th>No of Tags</th>
     </tr>
-    <% if @users.nil? %>
+    <% if @tags.nil? %>
+    <tr>
+      <td>No such tags...</td>
+    </tr>
+    <% else %>
+    <% @tags.each do |t| %>
+    <tr>
+      <td><%= link_to t.name , tag_path(t) %></td>
+      <td><%= Tag.where(name:t.name).count %></td>
+    </tr>
+    <% end %>
+    <% end %>
+  </table>
+  <p>
+
+    <table class="ui single line table">
+      <tr>
+        <th>Email</th>
+        <th>User Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </tr>
+      <% if @users.nil? %>
       <tr>
         <td>No users found..</td>
       </tr>
-    <% else %>
+      <% else %>
       <% @users.each do |u| %>
-        <% user = User.find(u) %>
-        <tr>
+      <% user = User.find(u) %>
+      <tr>
         <td><%= link_to user.email , profile_path(user) %></td>
+        <td><%= user.username %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
       </tr>
       <% end %>
-    <% end %>
-  </table>
-</div>
+      <% end %>
+    </table>
+
+
+
+  </div>

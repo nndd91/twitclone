@@ -12,14 +12,16 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = current_user.tweets.build(tweet_params)
+
+
     if @tweet.save
       if tweet_params[:media_location].present?
         @image = @tweet.images.build(media_location: tweet_params[:media_location])
         @image.save
       end
       MentionsCreator.new(@tweet).call
-
-      redirect_to edit_tweet_path(@tweet)
+      check_tags
+      redirect_to root_path
     else
       render :new
     end
@@ -58,4 +60,27 @@ class TweetsController < ApplicationController
   def tweet_params
     params.require(:tweet).permit(:body, :user_id, :media_location)
   end
+
+  def check_tags
+    pattern = /\A#\w+/
+    tag_array = []
+    @tweet.body.split(' ').map do |word|
+      if pattern.match?(word)
+        tag_array << word
+      end
+    end
+
+    tag_array.each do |tag|
+      tag.gsub!('#', '')
+      if Tag.exists?(name: tag)
+        @tweettag = @tweet.tagtweets.build(tag: Tag.find_by(name: tag))
+        @tweettag.save
+      else
+        @tag=Tag.create(name:tag)
+        @tweettag = @tweet.tagtweets.build(tag: Tag.find_by(name: tag))
+        @tweettag.save
+      end
+    end
+  end
+
 end

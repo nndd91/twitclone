@@ -17,9 +17,6 @@ class MessageController < ApplicationController
     end
   end
 
-  #def show
-   #@message = Message.find(params[:id])
-  #end
 
   def close
     respond_to do |format|
