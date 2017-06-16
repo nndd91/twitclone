@@ -1,6 +1,6 @@
 # README
 
-## AC Project Sample
+## Twitclone Rails
 
 This is an app for us to practice on our ruby on rails skill. We are creating a twitter clone that contains all the features as describe by the following user stories:
 
@@ -25,7 +25,7 @@ This is an app for us to practice on our ruby on rails skill. We are creating a 
 * As a user, I can 'like' a tweet
 * As a user, I can reply to other tweets
 * As a user, I can upload photo with a tweet
-* As a user, I can search for another user 
+* As a user, I can search for another user
 * As an admin, I can edit/delete user
 * As an admin, I can view a list of user
 * As an admin, I can delete all tweet
