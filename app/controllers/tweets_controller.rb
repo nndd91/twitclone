@@ -1,9 +1,8 @@
 class TweetsController < ApplicationController
 
-  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:home]
 
   def index
-    #@tweets = Tweet.all.order('created_at DESC') # All tweets
     @user = current_user
     @following = current_user.following_ids
     @tweets = Tweet.get_tweets(@following, current_user.id).order('created_at DESC')
@@ -76,11 +75,14 @@ class TweetsController < ApplicationController
     redirect_to root_path
   end
 
-  def create_retweet
+  def home
+  end
 
+  def create_retweet
   end
 
   private
+
   def tweet_params
     params.require(:tweet).permit(:body, :user_id, :media_location, :retweet_id)
   end
