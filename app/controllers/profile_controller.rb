@@ -21,9 +21,7 @@ class ProfileController < ApplicationController
 
   def search
     @allusers = User.new
-    if params[:user] == nil or params == nil
-      @users = User.all.pluck(:id)
-    else
+    if params[:user]
       @users = UserSearch.new(params[:user][:searchvalue]).call
       @tags = UserSearch.new(params[:user][:searchvalue]).return_tags
     end
