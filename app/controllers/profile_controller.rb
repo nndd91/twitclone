@@ -25,6 +25,7 @@ class ProfileController < ApplicationController
       @users = User.all.pluck(:id)
     else
       @users = UserSearch.new(params[:user][:searchvalue]).call
+      @tags = UserSearch.new(params[:user][:searchvalue]).return_tags
     end
   end
 
@@ -32,7 +33,7 @@ class ProfileController < ApplicationController
 
   def find_following
     Following.find_by(follower_id: current_user.id,
-                      followed_id: @user.id)
+      followed_id: @user.id)
   end
 
   def get_user

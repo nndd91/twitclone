@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'mentions/destroy'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-	devise_for :users, controllers: { registrations: 'users/registrations'}
+  devise_for :users, controllers: { registrations: 'users/registrations'}
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :images, only: [:create, :destroy], shallow: true
   end
 
-
+  resources :tags do
+  end
+  
   resources :message do
     collection do
       get :close

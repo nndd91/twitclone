@@ -1,85 +1,85 @@
 <% if @tweets.exists? %>
-  <div class="ui segments">
-    <% @tweets = @tweets.page(params[:page]).per(10) %>
-    <% @tweets.each do |tweet| %>
-      <div class="ui segment">
-        <div class="ui sixteen wide grid">
-          <div class="three wide column">
-            <%= image_tag(tweet.user.avatar.thumb.url, :class => 'ui medium circular image' )%>
-          </div>
+<div class="ui segments">
+  <% @tweets = @tweets.page(params[:page]).per(10) %>
+  <% @tweets.each do |tweet| %>
+  <div class="ui segment">
+    <div class="ui sixteen wide grid">
+      <div class="three wide column">
+        <%= image_tag(tweet.user.avatar.thumb.url, :class => 'ui medium circular image' )%>
+      </div>
+      <div class="thirteen wide column">
+        <div class="row">
           <div class="thirteen wide column">
-            <div class="row">
-              <div class="thirteen wide column">
-                <div class="ui medium header"><%= tweet.user.first_name %> <%= link_to '@'+tweet.user.username, profile_path(tweet.user)%></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="thirteen wide column">
-                <%= tweet.body %>
-              </div>
-            </div>
-
-            <div class="ui sixteen wide grid">
-              <!-- Likes Column -->
-              <div class="five wide column">
-                <div id=<%= "likes_link-#{tweet.id}"%>  style="display: inline-block" >
-                  <%= render partial: 'likes/likebutton', locals: { tweet: tweet } %>
-                </div>
-              </div>
-
-              <div class="sixteen wide column" style="padding: 0px;">
-                <div class="ui accordion">
-                  <div class="title">
-                    <i class="dropdown icon"></i>
-                    Comments (<%= tweet.replys.count %>)
-                  </div>
-                  <div class="content">
-                    <div class="ui comments">
-                      <h3 class="ui dividing header">Comments </h3>
-                      <% tweet.replys.each do |comment| %>
-                        <div class="comment">
-                          <a class="avatar">
-                            <%= image_tag(tweet.user.avatar.thumb.url, :class => 'ui avatar image' )%>
-                          </a>
-                          <div class="content">
-                            <a class="author"><%= User.find(comment.user_id).username %></a>
-                            <div class="text"><%= comment.body %></div>
-                          </div>
-                        </div>
-                      <% end %>
-                      <br />
-                      <div class="ui form">
-                        <%= simple_form_for tweet.replys.build(), url:reply_index_path(tweet) do |f| %>
-                          <div class='field'>
-                            <%= f.input :body, as: :text, input_html: { rows: "2" }, label: "New Comment:" %><br/>
-                          </div><br/>
-                          <div>
-                            <%= f.button :submit, class: 'ui primary submit icon button' %>
-                          </div>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <% if tweet.user_id == current_user.id %>
-              <div class="row">
-                <div class="right floated sixteen wide column">
-                    <br />
-                    <%= link_to 'Show', tweet_path(tweet) %>
-                    <%= link_to 'Edit', edit_tweet_path(tweet) %>
-                    <%= link_to 'Delete', tweet_path(tweet), method: :delete, data:{confirm: "Confirm?"}   %>
-                  <br />
-                  <br />
-                </div>
-              </div>
-            <% end %>
+            <div class="ui medium header"><%= tweet.user.first_name %> <%= link_to '@'+tweet.user.username, profile_path(tweet.user)%></div>
           </div>
         </div>
+        <div class="row">
+          <div class="thirteen wide column">
+            <%= tweet.body %>
+          </div>
+        </div>
+
+        <div class="ui sixteen wide grid">
+          <!-- Likes Column -->
+          <div class="five wide column">
+            <div id=<%= "likes_link-#{tweet.id}"%>  style="display: inline-block" >
+              <%= render partial: 'likes/likebutton', locals: { tweet: tweet } %>
+            </div>
+          </div>
+
+          <div class="sixteen wide column" style="padding: 0px;">
+            <div class="ui accordion">
+              <div class="title">
+                <i class="dropdown icon"></i>
+                Comments (<%= tweet.replys.count %>)
+              </div>
+              <div class="content">
+                <div class="ui comments">
+                  <h3 class="ui dividing header">Comments </h3>
+                  <% tweet.replys.each do |comment| %>
+                  <div class="comment">
+                    <a class="avatar">
+                      <%= image_tag(tweet.user.avatar.thumb.url, :class => 'ui avatar image' )%>
+                    </a>
+                    <div class="content">
+                      <a class="author"><%= User.find(comment.user_id).username %></a>
+                      <div class="text"><%= comment.body %></div>
+                    </div>
+                  </div>
+                  <% end %>
+                  <br />
+                  <div class="ui form">
+                    <%= simple_form_for tweet.replys.build(), url:reply_index_path(tweet) do |f| %>
+                    <div class='field'>
+                      <%= f.input :body, as: :text, input_html: { rows: "2" }, label: "New Comment:" %><br/>
+                    </div><br/>
+                    <div>
+                      <%= f.button :submit, class: 'ui primary submit icon button' %>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% if tweet.user_id == current_user.id %>
+        <div class="row">
+          <div class="right floated sixteen wide column">
+            <br />
+            <%= link_to 'Show', tweet_path(tweet) %>
+            <%= link_to 'Edit', edit_tweet_path(tweet) %>
+            <%= link_to 'Delete', tweet_path(tweet), method: :delete, data:{confirm: "Confirm?"}   %>
+            <br />
+            <br />
+          </div>
+        </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
+  <% end %>
+</div>
 <% end %>
 
 <script>
