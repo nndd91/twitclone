@@ -47,7 +47,7 @@ RSpec.describe TweetsController, type: :controller do
 
         it do
          created_tweet = assigns(:tweet)
-         expect(response).to redirect_to tweets_path
+         expect(response).to redirect_to root_path
         end
       end
 
