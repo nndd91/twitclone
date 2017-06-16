@@ -18,10 +18,6 @@ class ReplyController < ApplicationController
     @tweet= Tweet.find(params[:id])
   end
 
-  #def show
-   #@message = Message.find(params[:id])
-  #end
-
   def index
     @reply = Reply.where(tweet_id: params[:id])
   end

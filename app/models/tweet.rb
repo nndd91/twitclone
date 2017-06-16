@@ -8,6 +8,7 @@ class Tweet < ApplicationRecord
   has_many :images, dependent: :destroy
   has_many :mentions, dependent: :destroy
   has_many :replys, dependent: :destroy
+  has_many :tagtweets, dependent: :destroy
 
   has_one :main_tweet, :class_name => "Tweet", :foreign_key => "retweet_id"
   has_many :retweets, :class_name => "Tweet", :foreign_key => "retweet_id"
