@@ -18,12 +18,17 @@ RSpec.describe TweetsController, type: :controller do
     end
 
     describe 'GET #index' do
-      let(:tweets) { create_list(:tweet, 3) }
+      let(:user2) { create(:user) }
+      let(:user3) { create(:user) }
+      let!(:following) { create(:following, follower: user, followed: user2) }
+      let!(:tweets) { create_list(:tweet, 3, user: user2) }
+      let!(:tweet_not_in_array) { create(:tweet, user: user3) }
 
       before do
         get :index
       end
-
+      it { expect(Tweet.count).to eq(4) }
+      it { expect(Following.count).to eq(1) }
       it { expect(assigns(:tweets)).to match_array(tweets) }
     end
 
