@@ -8,20 +8,20 @@ class NotificationPresenter
     @likes = []
     @retweets = []
 
-    @current_user.mentions.order('created_at DESC').limit(20).each do |mention|
+    @current_user.mentioned_in_tweets.order('created_at DESC').limit(20).each do |mention|
       seconds_ago = Time.now.ago(mention.created_at.to_i).to_i
       time_ago_string = get_time_string(seconds_ago)
 
       @mentions << [
         mention.user.id,
-        mention.tweet.id,
-        "mentions you in a",
+        mention.id,
+        "mentioned you in a",
         time_ago_string,
         seconds_ago
       ]
     end
 
-    @current_user.likes.order('created_at DESC').limit(20).each do |like|
+    @current_user.tweets_likes.order('created_at DESC').limit(20).each do |like|
       seconds_ago = Time.now.ago(like.created_at.to_i).to_i
       time_ago_string = get_time_string(seconds_ago)
 

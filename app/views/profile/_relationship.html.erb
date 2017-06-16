@@ -3,7 +3,7 @@
   <div class="ui selection list">
     <% @relationship.each do |user| %>
       <div class="item">
-        <img class="ui mini avatar image" src="https://forumac.nathanshq.com/uploads/user/12/thumb_nequesapientedeleniti.png"></img>
+        <%= image_tag(user.avatar.thumb.url, :class => 'ui mini avatar image' )%>
         <div class="content">
           <div class="header">
             <li><%= link_to user.email, profile_path(user.id) %>

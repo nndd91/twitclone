@@ -19,7 +19,13 @@
               <div class="row">
                 Retweeted:
               </div>
-              <%= render partial: 'tweets/tweetspreview', locals: { tweet: Tweet.find(tweet.retweet_id) } %>
+              <% if Tweet.exists?(tweet.retweet_id) %>
+                <%= render partial: 'tweets/tweetspreview', locals: { tweet: Tweet.find(tweet.retweet_id) } %>
+              <% else %>
+                <div class="ui segment">
+                  Tweet does not exist or has already been deleted.
+                </div>
+              <% end %>
             <% end %>
             <div class="row">
               <div class="thirteen wide column">
@@ -37,7 +43,6 @@
                     </div>
                     <div class="content">
                       <div class="ui comments">
-                        <h3 class="ui dividing header">Comments </h3>
                         <% tweet.replys.each do |comment| %>
                           <div class="comment">
                             <a class="avatar">

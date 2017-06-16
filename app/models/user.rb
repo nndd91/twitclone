@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
 
 
   has_many :likes, dependent: :destroy
+  has_many :tweets_likes, class_name: "Like", through: :tweets, source: :likes
 
   has_many :active_messages, class_name: "Message",
                               foreign_key: "from_user_id",
