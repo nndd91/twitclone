@@ -1,3 +1,10 @@
 <%= render 'layouts/navbar' %>
-<%= render 'layouts/stats' %>
-
+<div class="ui container">
+  <div class="ui sixteen wide centered grid">
+    <div class="ui twelve wide column">
+      <%= render 'tweets/list' %>
+        <%= paginate @tweets %>
+        <%= page_entries_info @tweets %>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,9 @@
 class TagsController < ApplicationController
- def show
-   @tweet =  Tagtweet.find_by(tag_id:(params[:id]))
-   #Tagtweet.find_by(tag:Tag.find_by((params[:id])))
- end
+  def show
+    @tag = Tag.find(params[:id])
+    @tweets =  @tag.tweets
+  end
 
- def index
- end
+  def index
+  end
 end
