@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :tweets do
     member do
       resources :reply
+      get 'retweet'
+      get 'retweeting'
       post 'reply/new' => 'reply#new', :as=>"new_reply"
     end
     collection do # collection instead of member so url = tweets/feed instead of tweets/:id/feed

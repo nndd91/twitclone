@@ -10,5 +10,27 @@
 
 #popouttime {
   padding: 5px 5px 5px 20px;
+}
 
+#retweet {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: white;
+  z-index: 1;
+  opacity: 0.89
+}
+
+#retweetbox {
+  opacity: 1;
+  background-color: white;
+}
+
+#retweet.hidden {
+  display: none;
 }

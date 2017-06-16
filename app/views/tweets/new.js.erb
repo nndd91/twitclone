@@ -1,0 +1,6 @@
+$('#retweet').html("<%= j render partial: 'new' %>")
+$('#retweet').removeClass('hidden');
+
+$('#closeretweet').click(function(){
+  $('#retweet').addClass('hidden');
+});

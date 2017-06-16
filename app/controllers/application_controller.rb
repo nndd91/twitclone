@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def get_notifications
     if !current_user.nil?
-      @notifications = NotificationPopulator.new(current_user).calculate
+      @notifications = NotificationPresenter.new(current_user).list
     end
   end
 end

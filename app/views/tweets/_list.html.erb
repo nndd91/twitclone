@@ -15,23 +15,39 @@
         </div>
         <div class="row">
           <div class="thirteen wide column">
-            <%= tweet.body %>
-          </div>
-        </div>
-
-        <div class="ui sixteen wide grid">
-          <!-- Likes Column -->
-          <div class="five wide column">
-            <div id=<%= "likes_link-#{tweet.id}"%>  style="display: inline-block" >
-              <%= render partial: 'likes/likebutton', locals: { tweet: tweet } %>
+            <div class="row">
+              <div class="thirteen wide column">
+                <div class="ui medium header"><%= tweet.user.first_name %> <%= link_to '@'+tweet.user.username, profile_path(tweet.user)%></div>
+              </div>
+            </div>
+            <% if !tweet.retweet_id.nil? %>
+              <div class="row">
+                Retweeted:
+              </div>
+              <%= render partial: 'tweets/tweetspreview', locals: { tweet: Tweet.find(tweet.retweet_id) } %>
+            <% end %>
+            <div class="row">
+              <div class="thirteen wide column">
+                <%= tweet.body %>
+              </div>
             </div>
           </div>
+          <div class="ui sixteen wide grid">
+            <!-- Likes Column -->
+            <div class="five wide column">
+              <div id=<%= "likes_link-#{tweet.id}"%>  style="display: inline-block" >
+                <%= render partial: 'likes/likebutton', locals: { tweet: tweet } %>
+              </div>
+              <div>
+                <%= link_to 'Retweet', retweet_tweet_path(tweet), remote: true %>
+              </div>
+            </div>
 
-          <div class="sixteen wide column" style="padding: 0px;">
-            <div class="ui accordion">
-              <div class="title">
-                <i class="dropdown icon"></i>
-                Comments (<%= tweet.replys.count %>)
+            <div class="sixteen wide column" style="padding: 0px;">
+              <div class="ui accordion">
+                <div class="title">
+                  <i class="dropdown icon"></i>
+                  Comments (<%= tweet.replys.count %>)
               </div>
               <div class="content">
                 <div class="ui comments">

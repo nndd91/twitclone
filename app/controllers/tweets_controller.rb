@@ -3,11 +3,14 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.all.order('created_at DESC')
   end
 
   def new
     @tweet = Tweet.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -56,9 +59,20 @@ class TweetsController < ApplicationController
     @tweets = Tweet.get_tweets(@following, current_user.id)
   end
 
+  def retweet
+    @tweet = Tweet.new
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def create_retweet
+
+  end
+
   private
   def tweet_params
-    params.require(:tweet).permit(:body, :user_id, :media_location)
+    params.require(:tweet).permit(:body, :user_id, :media_location, :retweet_id)
   end
 
   def check_tags

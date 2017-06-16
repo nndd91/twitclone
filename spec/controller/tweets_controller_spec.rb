@@ -24,15 +24,16 @@ RSpec.describe TweetsController, type: :controller do
         get :index
       end
 
-      it { expect(assigns(:tweets)).to eq(tweets) }
+      it { expect(assigns(:tweets)).to match_array(tweets) }
     end
 
     describe 'GET #new' do
       before do
-        get :new
+        get :new, xhr: true
       end
 
       it { expect(assigns(:tweet)).to be_a_new_record }
+      it { expect(response).to render_template(:new) }
     end
 
     describe 'POST #create' do
@@ -46,7 +47,7 @@ RSpec.describe TweetsController, type: :controller do
 
         it do
          created_tweet = assigns(:tweet)
-         expect(response).to redirect_to edit_tweet_path(created_tweet)
+         expect(response).to redirect_to tweets_path
         end
       end
 

@@ -1,0 +1,15 @@
+<%# render 'tweetsnapshot' %>
+<div class="ui container">
+  <div id="retweetbox">
+    <div class="ui form segment">
+      <div style="display: flex; justify-content: flex-end;">
+        <a href="#" id="closeretweet"><i class="remove icon"></i></a>
+      </div>
+      <h3>Retweeting..</h3>
+        <%= render 'form' %>
+        <div class="ui segment">
+          <%= render partial: 'tweetspreview', locals: { tweet: Tweet.find(params[:id]) } %>
+        </div>
+    </div>
+  </div>
+</div>

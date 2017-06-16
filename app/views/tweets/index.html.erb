@@ -1,3 +1,5 @@
+<div id="retweet" class="hidden">
+</div>
 <%= render 'layouts/navbar'%>
 <div class="ui container segments">
   <%= render 'layouts/stats'%>
@@ -5,12 +7,14 @@
   <div class="ui sixteen wide centered grid">
     <div class="ui twelve wide column">
       <% if flash[:notice] %>
-        <div class="alert alert-warning" role="alert" style="border: solid 1px red;padding: 5px; color: red;">
+        <div class="alert alert-warning" role="alert" style="border: solid 1px red;padding: 5px; color: red;border-radius: 3px; background-color: #ed7b7b">
           <%= flash[:notice] %>
         </div>
+        <br />
       <% end %>
+
       <div style="display: flex; justify-content: flex-end;">
-        <%= link_to 'New Tweet', new_tweet_path , class: 'ui primary submit icon button' %>
+        <%= link_to 'New Tweet', new_tweet_path, remote: true, class: 'ui primary submit icon button' %>
       </div>
       <%= render 'list' %>
         <%= paginate @tweets %>
