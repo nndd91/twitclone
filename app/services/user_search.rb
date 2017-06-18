@@ -9,8 +9,6 @@ class UserSearch
     @search_username = User.where("username ~* '#{@searchvalue}'").pluck(:id)
     @search_email = User.where("email ~* '#{@searchvalue}'").pluck(:id)
     @allusers = (@search_first_name + @search_last_name + @search_username + @search_email).uniq
-    
-    
   end
 
   def return_tags

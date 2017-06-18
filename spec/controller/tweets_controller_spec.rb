@@ -3,11 +3,21 @@ require 'rails_helper'
 RSpec.describe TweetsController, type: :controller do
 
   context 'user not signed in' do
-    before do
-      get :index
-    end
+      describe 'get #index' do
+        before do
+          get :index
+        end
 
-    it { expect(response).to redirect_to new_user_session_path }
+        it { expect(response).to redirect_to new_user_session_path }
+      end
+
+      describe 'get #home' do
+        before do
+          get :home
+        end
+
+        it { expect(response).to have_http_status(:success) }
+      end
   end
 
   context 'user signed in' do
@@ -18,12 +28,17 @@ RSpec.describe TweetsController, type: :controller do
     end
 
     describe 'GET #index' do
-      let(:tweets) { create_list(:tweet, 3) }
+      let(:user2) { create(:user) }
+      let(:user3) { create(:user) }
+      let!(:following) { create(:following, follower: user, followed: user2) }
+      let!(:tweets) { create_list(:tweet, 3, user: user2) }
+      let!(:tweet_not_in_array) { create(:tweet, user: user3) }
 
       before do
         get :index
       end
-
+      it { expect(Tweet.count).to eq(4) }
+      it { expect(Following.count).to eq(1) }
       it { expect(assigns(:tweets)).to match_array(tweets) }
     end
 
@@ -117,6 +132,14 @@ RSpec.describe TweetsController, type: :controller do
       it { expect(assigns(:user)).to eq(user) }
       it { expect(assigns(:following)).to eq([following.followed_id]) }
       it { expect(assigns(:tweets)).to eq(all_tweets) }
+    end
+
+    describe 'get #home' do
+      before do
+        get :home
+      end
+
+      it { expect(response).to redirect_to tweets_path }
     end
 
   end

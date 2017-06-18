@@ -1,28 +1,27 @@
-  <%= render 'layouts/navbar'%>
-  <%= render 'stats' %>
-
-  <div class="ui container segments">
-    <div class="ui sixteen wide centered grid">
-      <div class="ui twelve wide column"><br />
-        <div style="display:flex; justify-content: flex-end;">
-          <div id="newmessagebutton">
-            <%= link_to 'New Message', new_message_path, remote: true, class: 'ui primary button' %>
-          </div>
-        </div>
-        <div id="newmessagebox"></div>
-      </div>
-      <div class="ui twelve wide column">
-        <div class="ui segment">
-          <h3> Inbox </h3>
-          <%= render partial: 'list', locals: { messages: @inbox }%>
+<div></div>
+<%= render 'layouts/navbar'%>
+<div class="ui container">
+  <div class="ui sixteen wide centered grid">
+    <div class="ui twelve wide column"><br />
+      <div style="display:flex; justify-content: flex-end;">
+        <div id="newmessagebutton">
+          <%= link_to 'New Message', new_message_path, remote: true, class: 'ui primary button' %>
         </div>
       </div>
+      <div id="newmessagebox"></div>
+    </div>
+    <div class="ui twelve wide column">
+      <div class="ui segment">
+        <h3> Inbox </h3>
+        <%= render partial: 'list', locals: { messages: @inbox }%>
+      </div>
+    </div>
 
-      <div class="ui twelve wide column">
-        <div class="ui segment">
-          <h3> Outbox </h3>
-          <%= render partial: 'list', locals: { messages: @outbox } %>
-        </div>
+    <div class="ui twelve wide column">
+      <div class="ui segment">
+        <h3> Outbox </h3>
+        <%= render partial: 'list', locals: { messages: @outbox } %>
       </div>
     </div>
   </div>
+</div>

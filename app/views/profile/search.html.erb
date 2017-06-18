@@ -1,59 +1,64 @@
 <%= render 'layouts/navbar'%>
 <div class="ui container">
-  <div class="ui form">
-    <%= simple_form_for @allusers, url: search_profile_index_path  do |f| %>
-    <br/>
-    <div class='field'>
-      Search for : <%= f.text_field :searchvalue , as: :text %><br/>
-    </div>
-    <%= f.button :submit , "Search" ,  class: 'ui primary submit icon button' %>
-    <% end %>
-  </div>
+  <div class="ui sixteen wide grid">
+    <div class="ui twelve wide centered column">
+      <div class="ui form">
+        <%= simple_form_for @allusers, url: search_profile_index_path  do |f| %>
+        <br/>
+        <div class='field'>
+          Search for : <%= f.text_field :searchvalue , as: :text, placeholder: "Enter Search Term.." %><br/>
+        </div>
+        <%= f.button :submit , "Search" ,  class: 'ui primary submit icon button' %>
+        <% end %>
+      </div>
 
-  <table class="ui single line table">
-    <tr>
-      <th>Tags</th>
-      <th>No of Tags</th>
-    </tr>
-    <% if @tags.nil? %>
-    <tr>
-      <td>No such tags...</td>
-    </tr>
-    <% else %>
-    <% @tags.each do |t| %>
-    <tr>
-      <td><%= link_to t.name , tag_path(t) %></td>
-      <td><%= Tag.where(name:t.name).count %></td>
-    </tr>
-    <% end %>
-    <% end %>
-  </table>
-  <p>
-
-    <table class="ui single line table">
-      <tr>
-        <th>Email</th>
-        <th>User Name</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-      </tr>
-      <% if @users.nil? %>
-      <tr>
-        <td>No users found..</td>
-      </tr>
-      <% else %>
-      <% @users.each do |u| %>
-      <% user = User.find(u) %>
-      <tr>
-        <td><%= link_to user.email , profile_path(user) %></td>
-        <td><%= user.username %></td>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-      </tr>
+      <% if @tags %>
+        <table class="ui single line table">
+          <tr>
+            <th>Tags</th>
+            <th>No of Tags</th>
+          </tr>
+          <% if @tags.empty? %>
+            <tr>
+              <td span=2>No such tags...</td>
+            </tr>
+          <% else %>
+            <% @tags.each do |t| %>
+              <tr>
+                <td><%= link_to t.name , tag_path(t) %></td>
+                <td><%= Tag.where(name:t.name).count %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
       <% end %>
+      <p>
+
+      <% if @users %>
+        <table class="ui single line table">
+          <tr>
+            <th></th>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Name</th>
+          </tr>
+          <% if @users.empty? %>
+          <tr>
+            <td>No users found..</td>
+          </tr>
+          <% else %>
+            <% @users.each do |u| %>
+              <% user = User.find(u) %>
+              <tr>
+                <td><%= image_tag(user.avatar.thumb.url, :class => 'ui tiny avatar image' )%></td>
+                <td><%= link_to user.username, profile_path(user) %></td>
+                <td><%= user.email %></td>
+                <td><%= user.first_name %> <%= user.last_name %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
       <% end %>
-    </table>
-
-
-
+    </div
   </div>
+</div>

@@ -15,14 +15,14 @@
 		</script>
 		<% if user_signed_in? %>
     	<%= stylesheet_link_tag "#{current_theme}" %>
+    <% else %>
+    	<%= stylesheet_link_tag 'login' %>
     <% end %>
 
 
 	</head>
 
 	<body>
-		<p class="navbar-text pull-right">
-		</p>
 		<%= yield %>
 	</body>
 </html>

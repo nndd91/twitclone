@@ -18,20 +18,22 @@ is_admin = true
 User.create(email: email, password: password, password_confirmation: password, is_admin: is_admin, first_name: first_name, last_name: last_name, age: age, username: username)
 
 # Creating Remaining Users
-40.times do
+10.times do
   username = Faker::Internet.user_name
   email = Faker::Internet.email
   password = "password"
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   age = Faker::Number.between(15, 30)
+  avatar = Faker::Avatar.image
 
   User.create(username: username, email: email, password: password, password_confirmation: password,
-              first_name: first_name, last_name: last_name, age: age )
+              first_name: first_name, last_name: last_name, age: age,
+              remote_avatar_url: avatar )
 end
 
 # Create some tweets
-200.times do
+30.times do
   tweet_body = Faker::HarryPotter.quote
   offset = rand(User.count)
   user_id = User.offset(offset).limit(1).first.id
@@ -64,7 +66,7 @@ end
 
 # Link Users together
 
-200.times do
+30.times do
   offset = rand(User.count)
   follower = User.offset(offset).limit(1).first
   offset = rand(User.count)
@@ -78,7 +80,7 @@ end
 end
 
 # Create Likes
-200.times do
+50.times do
   offset = rand(Tweet.count)
   tweet = Tweet.offset(offset).limit(1).first
   offset = rand(User.count)

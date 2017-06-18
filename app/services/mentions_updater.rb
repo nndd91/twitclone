@@ -16,11 +16,12 @@ class MentionsUpdater
 
     mention_array.each do |mention|
       mention.gsub!('@', '')
-      if User.exists?(username: mention)
-        @mention = @tweet.mentions.build(user: User.find_by(username: mention))
-        if !Mention.exists?(tweet: @tweet, user: User.find_by(username: mention))
-          @mention.save
-        end
+
+      user = User.where("username ~* '#{mention}'").first
+
+      if !@tweet.mentions.exists?(user: user)
+        @mention = @tweet.mentions.build(user: user)
+        @mention.save
       end
     end
 

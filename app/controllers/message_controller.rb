@@ -27,6 +27,7 @@ class MessageController < ApplicationController
   def index
     @inbox = Message.where(to_user_id: current_user.id)
     @outbox = Message.where(from_user_id: current_user.id)
+    @user = current_user
    end
 
   def destroy

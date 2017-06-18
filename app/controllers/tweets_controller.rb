@@ -1,9 +1,11 @@
 class TweetsController < ApplicationController
 
-  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:home]
 
   def index
-    @tweets = Tweet.all.order('created_at DESC')
+    @user = current_user
+    @following = current_user.following_ids
+    @tweets = Tweet.get_tweets(@following, current_user.id).order('created_at DESC')
   end
 
   def new
@@ -15,7 +17,6 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = current_user.tweets.build(tweet_params)
-
 
     if @tweet.save
       if tweet_params[:media_location].present?
@@ -50,6 +51,7 @@ class TweetsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @tweet = Tweet.find(params[:id])
   end
 
@@ -66,11 +68,24 @@ class TweetsController < ApplicationController
     end
   end
 
-  def create_retweet
+  def theme
+    @user = current_user
+    @user.theme = params[:theme]
+    @user.save
+    redirect_to root_path
+  end
 
+  def home
+    if user_signed_in?
+      redirect_to tweets_path
+    end
+  end
+
+  def create_retweet
   end
 
   private
+
   def tweet_params
     params.require(:tweet).permit(:body, :user_id, :media_location, :retweet_id)
   end

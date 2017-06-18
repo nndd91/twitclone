@@ -25,8 +25,12 @@
 }
 
 body {
-  background-color: white !important;
+  background-image: image-url("lighthouse.jpg");
+  display: flex;
+  justify-contents: center;
+  align-items: center;
 }
+
 
 .ui.segments {
     background-color: white !important;
@@ -59,4 +63,9 @@ a:hover {
 
 #popouttime {
   padding: 5px 5px 5px 20px;
+}
+
+#maintitle {
+  font-size: 50px;
+  color: white;
 }

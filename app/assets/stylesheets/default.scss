@@ -1,0 +1,62 @@
+.ui.inverted.menu {
+    border: 0 solid transparent;
+    background: #2185d0 !important;
+    box-shadow: none;
+    color: white !important;
+}
+
+.ui.inverted.menu.item {
+  background: #2185d0;
+  color: white !important;
+}
+
+.ui.inverted.menu .item, .ui.inverted.menu .item>a:not(.ui) {
+    color: white !important;
+}
+
+.ui.inverted.segment, .ui.primary.inverted.segment {
+    background: #2185d0 !important;
+    color: white !important;
+}
+
+.ui.primary.button, .ui.primary.buttons .button {
+    background-color: #2185d0 !important;
+    color: white !important;
+}
+
+body {
+  background-color: white !important;
+}
+
+.ui.segments {
+    background-color: white !important;
+    color: rgba(0,0,0,.87);
+}
+
+.ui.segment {
+    background-color: white!important;
+    color: black !important;
+}
+
+a {
+  color: #1e70bf !important;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1e70bf !important;
+  text-decoration: none;
+}
+#popout {
+  color: black;
+  border: solid 0.5px #bfbfbf;
+  border-top: 0px;
+}
+
+#popout a {
+  color: blue !important;
+}
+
+#popouttime {
+  padding: 5px 5px 5px 20px;
+}

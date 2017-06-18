@@ -1,0 +1,31 @@
+<div class="ui segment">
+  <div class="ui sixteen wide grid">
+    <div class="ui four wide column">
+      <center>
+        <%= image_tag(@user.avatar.thumb.url, :class => 'ui medium circular image' )%>
+      </center>
+    </div>
+    <div class="ui twelve wide column">
+      <div class="row">
+        <%= render 'layouts/stats'%>
+      </div>
+      <br />
+      <div class="row" style="display: flex; justify-content: flex-end;">
+        <% if  @user != current_user %>
+          <% if @following %>
+            <%= button_to 'Unfollow',
+                following_path(:following_id => @following.id),
+                                :method => :delete, :class => "ui button"%>
+          <% else %>
+            <%= button_to 'Follow',
+                profile_followings_path(:profile_id=> @user.id,
+                                        :follower_id => current_user.id),
+                                        :method => :post, :class => "ui button" %>
+          <% end %>
+        <% else %>
+          <%= link_to 'New Tweet', new_tweet_path, remote: true, class: 'ui primary submit icon button' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
