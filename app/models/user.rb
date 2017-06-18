@@ -5,10 +5,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tweets, dependent: :destroy
   has_many :active_followings, class_name: "Following",
@@ -32,8 +28,8 @@ class User < ActiveRecord::Base
                               foreign_key: "to_user_id",
                               dependent: :destroy
 
-  has_many :from_user, through: :active_messages, source: :from_user_id
-  has_many :to_user, through: :passive_messages, source: :to_user_id
+  has_many :from_user, through: :active_messages, source: :from_user
+  has_many :to_user, through: :passive_messages, source: :to_user
 
   has_many :mentions, dependent: :destroy
   has_many :mentioned_in_tweets, class_name: "Tweet", foreign_key: "tweet_id", through: :mentions, source: :tweet

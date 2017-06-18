@@ -24,6 +24,7 @@ class ProfileController < ApplicationController
     if params[:user]
       @users = UserSearch.new(params[:user][:searchvalue]).call
       @tags = UserSearch.new(params[:user][:searchvalue]).return_tags
+      @tweets = UserSearch.new(params[:user][:searchvalue]).return_tweets
     end
   end
 

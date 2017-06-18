@@ -13,9 +13,13 @@
         </div>
         <br />
       <% end %>
-      <%= render 'list' %>
-        <%= paginate @tweets %>
-        <%= page_entries_info @tweets %>
+      <% if @tweets.present? %>
+        <%= render 'list' %>
+      <% else %>
+        <div class="ui segment">
+          No tweets here.. Follow more people or make a new one!
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

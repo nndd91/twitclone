@@ -14,4 +14,8 @@ class UserSearch
   def return_tags
     @tag= Tag.where("name ~* '#{@searchvalue}'")
   end
+
+  def return_tweets
+    @tweets = Tweet.where("body ~* '#{@searchvalue}'")
+  end
 end

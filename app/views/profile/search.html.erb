@@ -12,6 +12,32 @@
         <% end %>
       </div>
 
+      <% if @tweets %>
+        <table class="ui single line table">
+          <tr>
+            <th>Tweets</th>
+            <th>User</th>
+          </tr>
+          <% if @tweets.empty? %>
+            <tr>
+              <td span=2>No such tweets...</td>
+            </tr>
+          <% else %>
+            <% @tweets.each do |t| %>
+              <tr>
+                <% if t.body.length > 80 %>
+                  <% tweettext = t.body.slice(0, 80) + "..." %>
+                <% else %>
+                  <% tweettext = t.body %>
+                <% end %>
+                <td><%= link_to tweettext , tweet_path(t) %></td>
+                <td><%= link_to t.user.username, profile_path(t.user) %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      <% end %>
+
       <% if @tags %>
         <table class="ui single line table">
           <tr>
