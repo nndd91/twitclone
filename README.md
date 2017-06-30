@@ -102,6 +102,7 @@ We deploy our application directly to heroku. Automatic deployment has been setu
 1. Register a heroku account and request access to production app
 2. Install [heroku toolbelt](https://toolbelt.heroku.com/) which is a CLI tool for creating and managing Heroku apps
 3. Setup Heroku remote
+4. You may visit this project at https://twitcloneac.herokuapp.com
 
 ```bash
 # Setup heroku remote for production
